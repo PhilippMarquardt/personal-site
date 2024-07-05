@@ -136,7 +136,7 @@ const LandingPage = () => {
     <div className={`min-h-screen ${isDarkMode ? 'bg-gray-900 text-white' : 'bg-gray-100 text-gray-900'}`}>
       <nav className={`fixed top-0 left-0 right-0 z-50 ${isDarkMode ? 'bg-gray-800' : 'bg-white'} shadow-md`}>
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <h1 className="text-2xl font-bold">Your Name</h1>
+          <h1 className="text-2xl font-bold">PM</h1>
           <div className="hidden md:flex space-x-4">
             <a onClick={() => scrollToSection('about')} className="cursor-pointer hover:text-blue-500 transition-colors">About</a>
             <a onClick={() => scrollToSection('journey')} className="cursor-pointer hover:text-blue-500 transition-colors">Journey</a>
@@ -170,8 +170,7 @@ const LandingPage = () => {
         <section id="about" className="mb-12 pt-16">
           <h2 className="text-2xl font-semibold mb-4">About Me</h2>
           <p className="text-lg">
-            Welcome to my personal website! I'm a passionate developer with experience in various technologies.
-            Here, you can explore some of the projects I've worked on and see my skills in action.
+            HIIIIII
           </p>
         </section>
 
