@@ -41,6 +41,7 @@ const projects = [
     category: 'ML', 
     image: 'https://www.microsoft.com/en-us/research/uploads/prod/2023/03/AI_Microsoft_Research_Header_1920x720.png', 
     github: 'https://github.com/yourusername/decision-trees', 
+    live: '/decisiontree', 
     blogSlug: 'decision-trees-implementation',
     description: 'An implementation of decision trees for machine learning classification tasks.'
   },
@@ -229,9 +230,9 @@ const LandingPage = () => {
                       <Github size={18} className="mr-1" /> GitHub
                     </a>
                     {project.live && (
-                      <a href={project.live} target="_blank" rel="noopener noreferrer" className="flex items-center text-green-500 hover:text-green-600">
+                      <Link href={project.live} className="flex items-center text-purple-500 hover:text-purple-600">
                         <ExternalLink size={18} className="mr-1" /> Live Demo
-                      </a>
+                    </Link>
                     )}
                     <Link href={`/blog/${project.blogSlug}`} className="flex items-center text-purple-500 hover:text-purple-600">
                       <ExternalLink size={18} className="mr-1" /> Blog Post
