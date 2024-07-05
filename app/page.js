@@ -246,7 +246,7 @@ const LandingPage = () => {
 
       <footer className={`mt-12 py-6 ${isDarkMode ? 'bg-gray-800' : 'bg-gray-200'}`}>
         <div className="container mx-auto px-4 text-center">
-          <p>&copy; {new Date().getFullYear()} Your Name. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()}  All rights reserved.</p>
         </div>
       </footer>
     </div>
