@@ -17,6 +17,7 @@
     "next-mdx-remote": "^5.0.0",
     "react": "^18",
     "react-dom": "^18",
+    "recharts": "^2.12.7",
     "rehype-katex": "^7.0.0",
     "remark": "^15.0.1",
     "remark-html": "^16.0.1",
