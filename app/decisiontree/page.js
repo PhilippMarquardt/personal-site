@@ -1,19 +1,19 @@
-"use client"
+"use client";
 
 import React, { useState, useEffect } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ReferenceLine } from 'recharts';
 
 const StepByStepDecisionTreeVisualization = () => {
   const [data, setData] = useState([
-    { id: 1, feature1: 2, feature2: 3, class: 'A' },
+    { id: 1, feature1: 2, feature2: 8, class: 'A' },
     { id: 2, feature1: 5, feature2: 4, class: 'B' },
-    { id: 3, feature1: 8, feature2: 6, class: 'A' },
+    { id: 3, feature1: 2, feature2: 6, class: 'A' },
     { id: 4, feature1: 4, feature2: 2, class: 'B' },
     { id: 5, feature1: 3, feature2: 5, class: 'A' },
     { id: 6, feature1: 6, feature2: 1, class: 'B' },
     { id: 7, feature1: 2, feature2: 4, class: 'A' },
-    { id: 8, feature1: 1, feature2: 3, class: 'B' },
-    { id: 8, feature1: 1, feature2: 3, class: 'A' },
+    { id: 8, feature1: 1, feature2: 1, class: 'B' },
+    { id: 9, feature1: 1, feature2: 3, class: 'A' },
   ]);
 
   const [tree, setTree] = useState(null);
@@ -112,22 +112,22 @@ const StepByStepDecisionTreeVisualization = () => {
         setTree(prevTree => {
           const newTree = JSON.parse(JSON.stringify(prevTree)); // Deep copy
           const nodeToSplit = findNextNodeToSplit(newTree);
-  
+
           if (!nodeToSplit) {
             setExplanation('Tree construction complete. All leaf nodes have been classified.');
             return newTree;
           }
-  
+
           const splitNode = buildTreeStep(nodeToSplit, nodeToSplit.dataset, step - 1);
           Object.assign(nodeToSplit, splitNode);
-  
+
           setCurrentNode(splitNode);
           if (splitNode.feature) {
             setExplanation(`Step ${step}: Splitting on ${splitNode.feature} at threshold ${splitNode.threshold.toFixed(2)}. Gini impurity: ${splitNode.gini.toFixed(3)}`);
           } else {
             setExplanation(`Step ${step}: Leaf node reached. Class: ${splitNode.class}`);
           }
-  
+
           return newTree;
         });
       }
@@ -142,7 +142,7 @@ const StepByStepDecisionTreeVisualization = () => {
 
     const radius = 30;
     const horizontalSpacing = 200 / (level + 1);
-    
+
     return (
       <g key={`${x}-${y}`}>
         <circle 
@@ -173,7 +173,7 @@ const StepByStepDecisionTreeVisualization = () => {
 
   return (
     <div className="flex flex-col items-center p-4">
-      <h1 className="text-2xl font-bold mb-4">Step-by-Step Decision Tree Learning Visualization</h1>
+      <h1 className="text-2xl font-bold mb-4">Step-by-Step Decision Tree Visualization</h1>
       <div className="w-full max-w-4xl">
         <svg width="100%" height="400" viewBox="0 0 800 400">
           {tree && renderNode(tree, 400, 50)}
@@ -212,12 +212,12 @@ const StepByStepDecisionTreeVisualization = () => {
           Previous Step
         </button>
         <button
-  className="px-4 py-2 bg-blue-500 text-white rounded"
-  onClick={() => setStep(prevStep => prevStep + 1)}
-  disabled={!tree || !findNextNodeToSplit(tree)}
->
-  Next Step
-</button>
+          className="px-4 py-2 bg-blue-500 text-white rounded"
+          onClick={() => setStep(prevStep => prevStep + 1)}
+          disabled={!tree || !findNextNodeToSplit(tree)}
+        >
+          Next Step
+        </button>
       </div>
       <div className="mt-4 w-full max-w-4xl">
         <h2 className="text-xl font-semibold mb-2">Training Data:</h2>
