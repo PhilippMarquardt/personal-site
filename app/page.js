@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useState, useEffect } from 'react';
-import { Moon, Sun, Github, ExternalLink, Menu, X } from 'lucide-react';
+import { Moon, Sun, Github, ExternalLink, Menu, X, FileText } from 'lucide-react';
 import Link from 'next/link';
 
 const categories = ['All', 'C#', 'Full Stack', 'ML', 'Math'];
@@ -64,6 +64,57 @@ const projects = [
     blogSlug: 'linear-algebra-visualizer',
     description: 'Interactive tool for visualizing linear algebra concepts.'
   },
+];
+
+const papers = [
+  {
+    id: 1,
+    title: 'An Improved Topic Masking Technique for Authorship Analysis',
+    authors: 'Oren Halvani, Lukas Graner, Roey Regev, Philipp Marquardt',
+    journal: 'Journal of Medical Imaging',
+    year: 2021,
+    link: 'https://arxiv.org/abs/2005.06605v1',
+    description: 'An Improved Topic Masking Technique for Authorship Analysis'
+  },
+  {
+    id: 2,
+    title: 'An Unsophisticated Neural Bots and Gender Profiling System',
+    authors: 'Oren Halvani and Philipp Marquardt',
+    journal: '...',
+    year: 2019,
+    link: 'https://ceur-ws.org/Vol-2380/paper_206.pdf',
+    description: 'An Unsophisticated Neural Bots and Gender Profiling System'
+  },
+  {
+    id: 3,
+    title: 'Resemblance-Ranking Peptide Library to Screen for Binders to Antibodies on a Peptidomic Scale',
+    authors: 'Emily Brown, David Lee',
+    journal: 'IEEE Robotics and Automation Letters',
+    year: 2021,
+    link: 'https://pubmed.ncbi.nlm.nih.gov/35408876/',
+    description: 'Resemblance-Ranking Peptide Library to Screen for Binders to Antibodies on a Peptidomic Scale'
+  },
+  {
+    id: 4,
+    title: 'Neuromorphic Vision mit Spiking Neural Networks zur Sturzerkennung im betreuten Wohnen',
+    authors: `Sven Nitzsche
+    , Brian Pachideh1
+    , Victor Pazmino1
+    , Norbert Link2
+    , Christoph
+    Schauer2
+    , Lukas Theurer2
+    , Valentin Haas3
+    , Philipp Marquardt3
+    , Sergey Biniaminov3
+    , Jürgen
+    Becker4
+    `,
+    journal: 'IEEE Robotics and Automation Letters',
+    year: 2021,
+    link: 'https://dl.gi.de/items/f27e40ad-d9d6-426f-b258-32e88f08b768',
+    description: 'Neuromorphic Vision mit Spiking Neural Networks zur Sturzerkennung im betreuten Wohnen'
+  }
 ];
 
 const timelineEvents = [
@@ -142,6 +193,7 @@ const LandingPage = () => {
             <a onClick={() => scrollToSection('about')} className="cursor-pointer hover:text-blue-500 transition-colors">About</a>
             <a onClick={() => scrollToSection('journey')} className="cursor-pointer hover:text-blue-500 transition-colors">Journey</a>
             <a onClick={() => scrollToSection('projects')} className="cursor-pointer hover:text-blue-500 transition-colors">Projects</a>
+            <a onClick={() => scrollToSection('papers')} className="cursor-pointer hover:text-blue-500 transition-colors">Papers</a>
           </div>
           <div className="flex items-center space-x-4">
             <button
@@ -163,6 +215,7 @@ const LandingPage = () => {
             <a onClick={() => scrollToSection('about')} className="block py-2 px-4 hover:bg-gray-700 transition-colors">About</a>
             <a onClick={() => scrollToSection('journey')} className="block py-2 px-4 hover:bg-gray-700 transition-colors">Journey</a>
             <a onClick={() => scrollToSection('projects')} className="block py-2 px-4 hover:bg-gray-700 transition-colors">Projects</a>
+            <a onClick={() => scrollToSection('papers')} className="block py-2 px-4 hover:bg-gray-700 transition-colors">Papers</a>
           </div>
         )}
       </nav>
@@ -189,7 +242,7 @@ const LandingPage = () => {
           </div>
         </section>
 
-        <section id="projects" className="pt-16">
+        <section id="projects" className="mb-16 pt-16">
           <h2 className="text-2xl font-semibold mb-4">Project Categories</h2>
           <div className="flex flex-wrap gap-4 mb-6">
             {categories.map((category) => (
@@ -232,7 +285,7 @@ const LandingPage = () => {
                     {project.live && (
                       <Link href={project.live} className="flex items-center text-purple-500 hover:text-purple-600">
                         <ExternalLink size={18} className="mr-1" /> Live Demo
-                    </Link>
+                      </Link>
                     )}
                     <Link href={`/blog/${project.blogSlug}`} className="flex items-center text-purple-500 hover:text-purple-600">
                       <ExternalLink size={18} className="mr-1" /> Blog Post
@@ -243,11 +296,42 @@ const LandingPage = () => {
             ))}
           </div>
         </section>
+        <section id="papers" className="pt-16">
+          <h2 className="text-2xl font-semibold mb-6">Published Papers</h2>
+          <div className="grid grid-cols-1 gap-6">
+            {papers.map((paper) => (
+              <div 
+                key={paper.id} 
+                className={`border rounded-lg overflow-hidden p-4 ${
+                  isDarkMode ? 'border-gray-700 bg-gray-800' : 'border-gray-200 bg-white'
+                }`}
+              >
+                <h3 className="text-lg font-semibold mb-2">{paper.title}</h3>
+                <p className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                  {paper.authors} • {paper.journal} • {paper.year}
+                </p>
+                <p className={`mt-2 text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+                  {paper.description}
+                </p>
+                <div className="mt-4">
+                  <a 
+                    href={paper.link} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="flex items-center text-blue-500 hover:text-blue-600"
+                  >
+                    <FileText size={18} className="mr-1" /> Read Paper
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
       </main>
 
       <footer className={`mt-12 py-6 ${isDarkMode ? 'bg-gray-800' : 'bg-gray-200'}`}>
         <div className="container mx-auto px-4 text-center">
-          <p>&copy; {new Date().getFullYear()}  All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} All rights reserved.</p>
         </div>
       </footer>
     </div>
