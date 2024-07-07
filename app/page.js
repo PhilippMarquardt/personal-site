@@ -309,10 +309,10 @@ const LandingPage = () => {
         {isMenuOpen && (
           <div className="md:hidden">
             <a onClick={() => scrollToSection('about')} className="block py-2 px-4 hover:bg-gray-700 transition-colors">About</a>
-            <a onClick={() => scrollToSection('courses')} className="block py-2 px-4 hover:bg-gray-700 transition-colors">Courses</a>
             <a onClick={() => scrollToSection('journey')} className="block py-2 px-4 hover:bg-gray-700 transition-colors">Journey</a>
             <a onClick={() => scrollToSection('projects')} className="block py-2 px-4 hover:bg-gray-700 transition-colors">Projects</a>
             <a onClick={() => scrollToSection('papers')} className="block py-2 px-4 hover:bg-gray-700 transition-colors">Papers</a>
+            <a onClick={() => scrollToSection('courses')} className="block py-2 px-4 hover:bg-gray-700 transition-colors">Masters Degree</a>
           </div>
         )}
       </nav>
