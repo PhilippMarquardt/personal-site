@@ -1,8 +1,61 @@
 "use client"
 
 import React, { useState, useEffect } from 'react';
-import { Moon, Sun, Github, ExternalLink, Menu, X, FileText } from 'lucide-react';
+import { Moon, Sun, Github, ExternalLink, Menu, X, FileText, Book, ChevronDown, ChevronUp } from 'lucide-react';
 import Link from 'next/link';
+
+
+const CourseCard = ({ course, isDarkMode }) => (
+  <div 
+    className={`border rounded-lg overflow-hidden p-4 ${
+      isDarkMode ? 'border-gray-700 bg-gray-800' : 'border-gray-200 bg-white'
+    }`}
+  >
+    <h4 className="text-lg font-semibold mb-2 flex items-start">
+      <Book size={18} className="mr-2 flex-shrink-0 mt-1" />
+      <span>{course.name}</span>
+    </h4>
+    <p className={`text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+      {course.description}
+    </p>
+  </div>
+);
+
+const SemesterCourses = ({ semester, isDarkMode }) => {
+  const [expanded, setExpanded] = useState(false);
+  const displayedCourses = expanded ? semester.courses : semester.courses.slice(0, 3);
+  const hasMoreCourses = semester.courses.length > 3;
+
+  return (
+    <div>
+      <h3 className={`text-xl font-semibold mb-4 ${isDarkMode ? 'text-blue-400' : 'text-blue-600'}`}>
+        Semester {semester.semester}
+      </h3>
+      <div className="space-y-4">
+        {displayedCourses.map((course) => (
+          <CourseCard key={course.id} course={course} isDarkMode={isDarkMode} />
+        ))}
+      </div>
+      {hasMoreCourses && (
+        <button
+          onClick={() => setExpanded(!expanded)}
+          className={`mt-4 flex items-center ${isDarkMode ? 'text-blue-400 hover:text-blue-300' : 'text-blue-600 hover:text-blue-700'}`}
+        >
+          {expanded ? (
+            <>
+              <ChevronUp size={20} className="mr-1" /> Show Less
+            </>
+          ) : (
+            <>
+              <ChevronDown size={20} className="mr-1" /> Show More
+            </>
+          )}
+        </button>
+      )}
+    </div>
+  );
+};
+
 
 const categories = ['All', 'C#', 'Full Stack', 'ML', 'Math'];
 
@@ -126,6 +179,48 @@ const timelineEvents = [
   { year: 2024, events: ['Finishing Master Degree'] },
 ];
 
+const courses = [
+  {
+    semester: 1,
+    courses: [
+      { id: 1, name: 'Deep Learning for Computer Vision II: Advanced Topics', description: '.' },
+      { id: 2, name: 'Natural Language Processing', description: '.' },
+      { id: 3, name: 'Energy Informatics 1 ', description: '.' },
+    ]
+  },
+  {
+    semester: 2,
+    courses: [
+      { id: 4, name: 'Machine Translation', description: '.' },
+      { id: 5, name: 'Practical Course Computer Vision for Human-Computer Interaction', description: '.' },
+      { id: 6, name: 'Machine Learning for Natural Sciences Exercises', description: '.' },
+      { id: 6, name: 'Advanced Artificial Intelligence', description: '.' },
+      { id: 6, name: 'Research Practical Course: Interactive Learning', description: '.' },
+      { id: 6, name: 'Seminar: Interactive Learning', description: '.' },
+      { id: 6, name: 'Human Computer Interaction ', description: '.' },
+      { id: 6, name: 'Energy Informatics 2 ', description: '.' },
+      { id: 6, name: 'Software Engineering II', description: '.' },
+    ]
+  },
+  {
+    semester: 3,
+    courses: [
+      { id: 7, name: 'Humanoid Robots - Seminar', description: '.' },
+      { id: 8, name: 'IT Security', description: '.' },
+      { id: 9, name: 'Cybersecurity', description: '.' },
+    ]
+  },
+  {
+    semester: 4,
+    courses: [
+      { id: 7, name: 'Advanced Machine Learning and Data Science', description: '.' },
+      { id: 8, name: 'Master Thesis', description: '.' },
+    
+    ]
+  },
+];
+
+
 const TimelineEvent = ({ year, events, isDarkMode }) => {
   return (
     <div className="mb-8 flex">
@@ -148,7 +243,7 @@ const TimelineEvent = ({ year, events, isDarkMode }) => {
 
 const LandingPage = () => {
   const [selectedCategory, setSelectedCategory] = useState('All');
-  const [isDarkMode, setIsDarkMode] = useState(true);
+  const [isDarkMode, setIsDarkMode] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const filteredProjects = selectedCategory === 'All'
@@ -194,6 +289,7 @@ const LandingPage = () => {
             <a onClick={() => scrollToSection('journey')} className="cursor-pointer hover:text-blue-500 transition-colors">Journey</a>
             <a onClick={() => scrollToSection('projects')} className="cursor-pointer hover:text-blue-500 transition-colors">Projects</a>
             <a onClick={() => scrollToSection('papers')} className="cursor-pointer hover:text-blue-500 transition-colors">Papers</a>
+            <a onClick={() => scrollToSection('courses')} className="cursor-pointer hover:text-blue-500 transition-colors">Masters Degree</a>
           </div>
           <div className="flex items-center space-x-4">
             <button
@@ -213,6 +309,7 @@ const LandingPage = () => {
         {isMenuOpen && (
           <div className="md:hidden">
             <a onClick={() => scrollToSection('about')} className="block py-2 px-4 hover:bg-gray-700 transition-colors">About</a>
+            <a onClick={() => scrollToSection('courses')} className="block py-2 px-4 hover:bg-gray-700 transition-colors">Courses</a>
             <a onClick={() => scrollToSection('journey')} className="block py-2 px-4 hover:bg-gray-700 transition-colors">Journey</a>
             <a onClick={() => scrollToSection('projects')} className="block py-2 px-4 hover:bg-gray-700 transition-colors">Projects</a>
             <a onClick={() => scrollToSection('papers')} className="block py-2 px-4 hover:bg-gray-700 transition-colors">Papers</a>
@@ -228,10 +325,11 @@ const LandingPage = () => {
           </p>
         </section>
 
+        
+
         <section id="journey" className="mb-16 pt-16">
           <h2 className="text-2xl font-semibold mb-6">My Journey</h2>
-          <div className="relative">
-            {timelineEvents.map((event, index) => (
+          <div className="relative">{timelineEvents.map((event, index) => (
               <TimelineEvent 
                 key={index}
                 year={event.year}
@@ -324,6 +422,15 @@ const LandingPage = () => {
                   </a>
                 </div>
               </div>
+            ))}
+          </div>
+        </section>
+
+        <section id="courses" className="mb-16 pt-16">
+          <h2 className="text-2xl font-semibold mb-6">Master's Degree Courses</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {courses.map((semester) => (
+              <SemesterCourses key={semester.semester} semester={semester} isDarkMode={isDarkMode} />
             ))}
           </div>
         </section>
