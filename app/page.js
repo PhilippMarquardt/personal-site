@@ -427,7 +427,7 @@ const LandingPage = () => {
         </section>
 
         <section id="courses" className="mb-16 pt-16">
-          <h2 className="text-2xl font-semibold mb-6">Master's Degree Courses</h2>
+          <h2 className="text-2xl font-semibold mb-6">Masters Degree Courses</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {courses.map((semester) => (
               <SemesterCourses key={semester.semester} semester={semester} isDarkMode={isDarkMode} />
