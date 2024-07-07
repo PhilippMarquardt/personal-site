@@ -183,38 +183,38 @@ const courses = [
   {
     semester: 1,
     courses: [
-      { id: 1, name: 'Deep Learning for Computer Vision II: Advanced Topics', description: '.' },
-      { id: 2, name: 'Natural Language Processing', description: '.' },
-      { id: 3, name: 'Energy Informatics 1 ', description: '.' },
+      { id: 1, name: 'Deep Learning for Computer Vision II: Advanced Topics', description: 'asd.' },
+      { id: 2, name: 'Natural Language Processing', description: 'dsa.' },
+      { id: 3, name: 'Energy Informatics 1', description: 'asd.' },
     ]
   },
   {
     semester: 2,
     courses: [
       { id: 4, name: 'Machine Translation', description: '.' },
-      { id: 5, name: 'Practical Course Computer Vision for Human-Computer Interaction', description: '.' },
-      { id: 6, name: 'Machine Learning for Natural Sciences Exercises', description: '.' },
-      { id: 6, name: 'Advanced Artificial Intelligence', description: '.' },
-      { id: 6, name: 'Research Practical Course: Interactive Learning', description: '.' },
-      { id: 6, name: 'Seminar: Interactive Learning', description: '.' },
-      { id: 6, name: 'Human Computer Interaction ', description: '.' },
-      { id: 6, name: 'Energy Informatics 2 ', description: '.' },
-      { id: 6, name: 'Software Engineering II', description: '.' },
+      { id: 5, name: 'Practical Course Computer Vision for Human-Computer Interaction', description: '.asd' },
+      { id: 9, name: 'Machine Learning for Natural Sciences Exercises', description: 'asd.' },
+      { id: 10, name: 'Advanced Artificial Intelligence', description: 'asd.' },
+      { id: 11, name: 'Research Practical Course: Interactive Learning', description: 'asd.' },
+      { id: 12, name: 'Seminar: Interactive Learning', description: 'ads.' },
+      { id: 13, name: 'Human Computer Interaction ', description: 'asd.' },
+      { id: 14, name: 'Energy Informatics 2', description: 'asd.' },
+      { id: 15, name: 'Software Engineering II', description: 'asd.' },
     ]
   },
   {
     semester: 3,
     courses: [
-      { id: 7, name: 'Humanoid Robots - Seminar', description: '.' },
-      { id: 8, name: 'IT Security', description: '.' },
-      { id: 9, name: 'Cybersecurity', description: '.' },
+      { id: 7, name: 'Humanoid Robots - Seminar', description: 'asd.' },
+      { id: 8, name: 'IT Security', description: 'asd.' },
+      { id: 9, name: 'Cybersecurity', description: 'asd.' },
     ]
   },
   {
     semester: 4,
     courses: [
-      { id: 7, name: 'Advanced Machine Learning and Data Science', description: '.' },
-      { id: 8, name: 'Master Thesis', description: '.' },
+      { id: 7, name: 'Advanced Machine Learning and Data Science', description: 'asd.' },
+      { id: 8, name: 'Master Thesis', description: 'asd.' },
     
     ]
   },
