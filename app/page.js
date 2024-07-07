@@ -28,7 +28,7 @@ const SemesterCourses = ({ semester, isDarkMode }) => {
 
   return (
     <div>
-      <h3 className={`text-xl font-semibold mb-4 ${isDarkMode ? 'text-blue-400' : 'text-blue-600'}`}>
+      <h3 className={`text-xl text-center font-semibold mb-4 ${isDarkMode ? 'text-blue-400' : 'text-blue-600'}`}>
         Semester {semester.semester}
       </h3>
       <div className="space-y-4">
