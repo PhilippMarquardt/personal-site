@@ -382,7 +382,7 @@ const LandingPage = () => {
         <SkillsSection isDarkMode={isDarkMode} />
 
         <section id="projects" className="mb-16 pt-16">
-          <h2 className="text-2xl font-semibold mb-4 text-center">Project Categories</h2>
+          <h2 className="text-2xl font-semibold mb-4 text-center">Projects</h2>
           <div className="flex flex-wrap gap-4 mb-6">
             {categories.map((category) => (
               <button
@@ -469,7 +469,7 @@ const LandingPage = () => {
         </section>
 
         <section id="courses" className="mb-16 pt-16">
-          <h2 className="text-2xl font-semibold mb-6 text-center">Masters Degree Courses</h2>
+          <h2 className="text-2xl font-semibold mb-6 text-center">Computer Science Master at the Karlsruhe Institute of Technology</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {courses.map((semester) => (
               <SemesterCourses key={semester.semester} semester={semester} isDarkMode={isDarkMode} />
