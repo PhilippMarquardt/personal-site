@@ -63,7 +63,38 @@ const SemesterCourses = ({ semester, isDarkMode }) => {
   );
 };
 
+const SkillCard = ({ title, technologies, description, isDarkMode }) => (
+  <div className={`p-6 rounded-lg ${isDarkMode ? 'bg-gray-800' : 'bg-white'} shadow-md`}>
+    <h3 className="text-xl font-semibold mb-2">{title}</h3>
+    <div className="mb-3">
+      <h4 className="font-medium mb-1">Technologies:</h4>
+      <p className={`text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+        {technologies.join(', ')}
+      </p>
+    </div>
+    <p className={`text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>{description}</p>
+  </div>
+);
 
+const SkillsSection = ({ isDarkMode }) => (
+  <section id="skills" className="mb-16 pt-16">
+    <h2 className="text-2xl font-semibold mb-6 text-center">Professional Work</h2>
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <SkillCard
+        title="Machine Learning Engineer at HS Analysis (2018-Present)"
+        technologies={['React', 'Node.js', 'flask', 'C#', 'WPF']}
+        description="Sole developer of the deep learning backend. "
+        isDarkMode={isDarkMode}
+      />
+      <SkillCard
+        title="Fraunhofer Insitute of Secure Information Technology (2019-2020)"
+        technologies={['Python', 'TensorFlow', 'PyTorch']}
+        description="Developing authorship verification methods"
+        isDarkMode={isDarkMode}
+      />
+    </div>
+  </section>
+);
 const categories = ['All', 'C#', 'Full Stack', 'ML', 'Math'];
 
 const projects = [
@@ -202,7 +233,7 @@ const courses = [
       { id: 5, name: 'Practical Course Computer Vision for Human-Computer Interaction', description: '.asd' },
       { id: 9, name: 'Machine Learning for Natural Sciences Exercises', description: 'asd.' },
       { id: 10, name: 'Advanced Artificial Intelligence', description: 'asd.' },
-      { id: 11, name: 'Research Practical Course: Interactive Learning', description: 'asd.' },
+      { id: 11, name: 'Research Practical Course: Interactive Learning', description: 'asd.', slug:'interactivelearning' },
       { id: 12, name: 'Seminar: Interactive Learning', description: 'ads.' },
       { id: 13, name: 'Human Computer Interaction ', description: 'asd.' },
       { id: 14, name: 'Energy Informatics 2', description: 'asd.' },
@@ -212,16 +243,16 @@ const courses = [
   {
     semester: 3,
     courses: [
-      { id: 7, name: 'Humanoid Robots - Seminar', description: 'asd.' },
-      { id: 8, name: 'IT Security', description: 'asd.' },
-      { id: 9, name: 'Cybersecurity', description: 'asd.' },
+      { id: 18, name: 'Humanoid Robots - Seminar', description: 'asd.' },
+      { id: 17, name: 'IT Security', description: 'asd.' },
+      { id: 16, name: 'Machine Learning in Climate and Environmental Sciences ', description: 'asd.', slug:'envsciences' },
     ]
   },
   {
     semester: 4,
     courses: [
-      { id: 7, name: 'Advanced Machine Learning and Data Science', description: 'asd.' },
-      { id: 8, name: 'Master Thesis', description: 'asd.' },
+      { id: 19, name: 'Advanced Machine Learning and Data Science', description: 'asd.' },
+      { id: 20, name: 'Master Thesis', description: 'asd.' },
     
     ]
   },
@@ -294,6 +325,7 @@ const LandingPage = () => {
           <div className="hidden md:flex space-x-4">
             <a onClick={() => scrollToSection('about')} className="cursor-pointer hover:text-blue-500 transition-colors">About</a>
             <a onClick={() => scrollToSection('journey')} className="cursor-pointer hover:text-blue-500 transition-colors">Journey</a>
+            <a onClick={() => scrollToSection('skills')} className="cursor-pointer hover:text-blue-500 transition-colors">Professional Work</a>
             <a onClick={() => scrollToSection('projects')} className="cursor-pointer hover:text-blue-500 transition-colors">Projects</a>
             <a onClick={() => scrollToSection('papers')} className="cursor-pointer hover:text-blue-500 transition-colors">Papers</a>
             <a onClick={() => scrollToSection('courses')} className="cursor-pointer hover:text-blue-500 transition-colors">Masters Degree</a>
@@ -317,6 +349,7 @@ const LandingPage = () => {
           <div className="md:hidden">
             <a onClick={() => scrollToSection('about')} className="block py-2 px-4 hover:bg-gray-700 transition-colors">About</a>
             <a onClick={() => scrollToSection('journey')} className="block py-2 px-4 hover:bg-gray-700 transition-colors">Journey</a>
+            <a onClick={() => scrollToSection('skills')} className="block py-2 px-4 hover:bg-gray-700 transition-colors">Skills</a>
             <a onClick={() => scrollToSection('projects')} className="block py-2 px-4 hover:bg-gray-700 transition-colors">Projects</a>
             <a onClick={() => scrollToSection('papers')} className="block py-2 px-4 hover:bg-gray-700 transition-colors">Papers</a>
             <a onClick={() => scrollToSection('courses')} className="block py-2 px-4 hover:bg-gray-700 transition-colors">Masters Degree</a>
@@ -326,17 +359,16 @@ const LandingPage = () => {
 
       <main className="container mx-auto px-4 py-12 mt-16">
         <section id="about" className="mb-12 pt-16">
-          <h2 className="text-2xl font-semibold mb-4">About Me</h2>
+          <h2 className="text-2xl font-semibold mb-4 text-center">About Me</h2>
           <p className="text-lg">
             HIIIIII
           </p>
         </section>
 
-        
-
         <section id="journey" className="mb-16 pt-16">
-          <h2 className="text-2xl font-semibold mb-6">My Journey</h2>
-          <div className="relative">{timelineEvents.map((event, index) => (
+          <h2 className="text-2xl font-semibold mb-6 text-center">My Journey</h2>
+          <div className="relative">
+            {timelineEvents.map((event, index) => (
               <TimelineEvent 
                 key={index}
                 year={event.year}
@@ -347,8 +379,10 @@ const LandingPage = () => {
           </div>
         </section>
 
+        <SkillsSection isDarkMode={isDarkMode} />
+
         <section id="projects" className="mb-16 pt-16">
-          <h2 className="text-2xl font-semibold mb-4">Project Categories</h2>
+          <h2 className="text-2xl font-semibold mb-4 text-center">Project Categories</h2>
           <div className="flex flex-wrap gap-4 mb-6">
             {categories.map((category) => (
               <button
@@ -401,8 +435,9 @@ const LandingPage = () => {
             ))}
           </div>
         </section>
+
         <section id="papers" className="pt-16">
-          <h2 className="text-2xl font-semibold mb-6">Published Papers</h2>
+          <h2 className="text-2xl font-semibold mb-6 text-center">Published Papers</h2>
           <div className="grid grid-cols-1 gap-6">
             {papers.map((paper) => (
               <div 
@@ -434,7 +469,7 @@ const LandingPage = () => {
         </section>
 
         <section id="courses" className="mb-16 pt-16">
-          <h2 className="text-2xl font-semibold mb-6">Masters Degree Courses</h2>
+          <h2 className="text-2xl font-semibold mb-6 text-center">Masters Degree Courses</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {courses.map((semester) => (
               <SemesterCourses key={semester.semester} semester={semester} isDarkMode={isDarkMode} />
