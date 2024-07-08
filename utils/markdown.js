@@ -47,3 +47,44 @@ export function getAllPostSlugs() {
     };
   });
 }
+
+const courseDirectory = path.join(process.cwd(), 'course-content');
+
+export async function getCourseData(slug) {
+  const fullPath = path.join(courseDirectory, `${slug}.md`);
+  const fileContents = fs.readFileSync(fullPath, 'utf8');
+
+  const { data, content } = matter(fileContents);
+
+  const processedContent = await unified()
+    .use(remarkParse)
+    .use(math)
+    .use(remarkRehype, { allowDangerousHtml: true })
+    .use(rehypeKatex)
+    .use(rehypeHighlight)
+    .use(rehypeStringify)
+    .process(content);
+
+  const contentHtml = processedContent.toString();
+
+  return {
+    slug,
+    ...data,
+    content: contentHtml,
+  };
+}
+
+export function getAllCourseSlugs() {
+  const fileNames = fs.readdirSync(courseDirectory);
+  return fileNames.map((fileName) => {
+    return {
+      params: {
+        slug: fileName.replace(/\.md$/, ''),
+      },
+    };
+  });
+}
+
+
+
+

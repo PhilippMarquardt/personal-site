@@ -6,19 +6,22 @@ import Link from 'next/link';
 
 
 const CourseCard = ({ course, isDarkMode }) => (
-  <div 
-    className={`border rounded-lg overflow-hidden p-4 ${
-      isDarkMode ? 'border-gray-700 bg-gray-800' : 'border-gray-200 bg-white'
-    }`}
-  >
-    <h4 className="text-lg font-semibold mb-2 flex items-start">
-      <Book size={18} className="mr-2 flex-shrink-0 mt-1" />
-      <span>{course.name}</span>
-    </h4>
-    <p className={`text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
-      {course.description}
-    </p>
-  </div>
+  <Link href={`/courses/${course.slug}`} className="block">
+    <div 
+      className={`border rounded-lg overflow-hidden p-4 transition-colors ${
+        isDarkMode ? 'border-gray-700 bg-gray-800 hover:bg-gray-700' : 'border-gray-200 bg-white hover:bg-gray-50'
+      }`}
+    >
+      <h4 className="text-lg font-semibold mb-2 flex items-start">
+        <Book size={18} className="mr-2 flex-shrink-0 mt-1" />
+        <span>{course.name}</span>
+      </h4>
+
+      <p className={`text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+        {course.description}
+      </p>
+    </div>
+  </Link>
 );
 
 const SemesterCourses = ({ semester, isDarkMode }) => {
@@ -33,7 +36,11 @@ const SemesterCourses = ({ semester, isDarkMode }) => {
       </h3>
       <div className="space-y-4">
         {displayedCourses.map((course) => (
-          <CourseCard key={course.id} course={course} isDarkMode={isDarkMode} />
+          <CourseCard 
+            key={course.id} 
+            course={course} 
+            isDarkMode={isDarkMode} 
+          />
         ))}
       </div>
       {hasMoreCourses && (
@@ -191,7 +198,7 @@ const courses = [
   {
     semester: 2,
     courses: [
-      { id: 4, name: 'Machine Translation', description: '.' },
+      { id: 4, name: 'Machine Translation', description: '.', slug:'machinetranslation' },
       { id: 5, name: 'Practical Course Computer Vision for Human-Computer Interaction', description: '.asd' },
       { id: 9, name: 'Machine Learning for Natural Sciences Exercises', description: 'asd.' },
       { id: 10, name: 'Advanced Artificial Intelligence', description: 'asd.' },
