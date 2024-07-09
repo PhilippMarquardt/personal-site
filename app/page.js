@@ -9,20 +9,34 @@ const researchProjects = [
   {
     id: 1,
     title: "KI basierte Diagnostik des Lungenkarzinoms zur Unterstützung personalisierter Therapieentscheidungen",
+    company: "HS Analysis GmbH",
+    task: "Development of the Deep Learning Model",
     funding: "€400,000",
     link: "https://www.gesundheitsindustrie-bw.de/fachbeitrag/aktuell/ki-gestuetzte-diagnostik-sagt-lungenkrebs-den-kampf#:~:text=Das%20Projektakronym%20IDOL%20steht%20f%C3%BCr,Lungenkarzinoms%20zur%20Unterst%C3%BCtzung%20personalisierter%20Therapieentscheidungen%E2%80%9C.&text=Bisher%20existiert%20noch%20kein%20klassischer,Arzneimittelresistenz%20bei%20Lungenkrebs%20nachweisen%20kann."
   },
   {
     id: 2,
     title: "Hybridlösung mit kontaktloser VIso-TAktiler Diagnostik",
+    company: "HS Analysis GmbH",
+    task: "Develop Segmentation Model for the Skin Detection and for the prediction of various parameters",
     funding: "€2,006,000",
     link: "https://www.interaktive-technologien.de/projekte/hybridvita"
   },
   {
     id: 3,
     title: "hyPro – Integration hybrider Intelligenz in die Prozesssteuerung von Produktionsanlagen der Glasumformung",
+    company: "HS Analysis GmbH",
+    task: "Development of the Deep Learning Model",
     funding: "€680,000",
     link: "https://www.ipt.fraunhofer.de/de/projekte/hypro.html"
+  },
+  {
+    id: 4,
+    title: "Analyse extremistischer Bestrebungen in sozialen Netzwerken (X-SONAR)",
+    company: "Fraunhofer Insitut für Sichere Informationstechnolgie",
+    task: "Development of a Model that can detect hate speech in social media posts",
+    funding: "€3,100,000",
+    link: "https://www.sifo.de/sifo/de/projekte/schutz-vor-kriminalitaet-und-terrorismus/terrorismusbekaempfung/x-sonar/x-sonar_node.html"
   },
 ];
 
@@ -34,13 +48,19 @@ const ResearchProjectCard = ({ project, isDarkMode }) => (
     <p className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'} mb-2`}>
       Funding: {project.funding}
     </p>
+    <p className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'} mb-2`}>
+      Task: {project.task}
+    </p>
+    <p className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'} mb-2`}>
+      While I was working at: {project.company}
+    </p>
     <a 
       href={project.link} 
       target="_blank" 
       rel="noopener noreferrer" 
       className="flex items-center text-blue-500 hover:text-blue-600"
     >
-      <ExternalLink size={18} className="mr-1" /> Learn More
+      <ExternalLink size={18} className="mr-1" /> Project Link
     </a>
   </div>
 );
@@ -152,7 +172,7 @@ const projects = [
     title: 'C# Multiplayer Framework for VR/AR Applications in Unity', 
     category: 'C#', 
     image: 'https://www.microsoft.com/en-us/research/uploads/prod/2023/03/AI_Microsoft_Research_Header_1920x720.png', 
-    github: 'https://github.com/yourusername/vr-ar-multiplayer-framework', 
+    github: 'https://github.com/PhilippMarquardt/ar-vr-multiplayer-framework', 
     blogSlug: 'vr-ar-multiplayer-framework',
     description: 'A multiplayer framework written in c# for vr and ar applications. Can be used in Unity to enable TCP and UDP based multiplayer sessions with various features.'
   },
@@ -250,7 +270,7 @@ const timelineEvents = [
   { year: 2018, events: ['Started Bachelor of Science in Computer Science at the TU Darmstadt', 'Started working at the HS Analysis GmbH as backend developer', 'Completed the Udacity Deep Learning Nanodegree', 'Lead workshop group at hackathon with Microsoft being a sponsor'] },
   { year: 2019, events: ['Started working a second job at the Fraunhofer Insitute for Secure Information Technology in Darmstadt', 'First paper', 'Lead workshop group at hackathon with Microsoft being a sponsor', 'Lead a workshop group at the Etengo Symposiom which Jürgen Schmidhuber was present at'] },
   { year: 2022, events: ['Graduated from TU Darmstadt with the Thesis: Mulit-Modality Abdominal Multi-Organ Segmentation'] },
-  { year: 2023, events: ['Enrolled in Master of Science in Computer Science at the Karlsruhe Institute of Technology'] },
+  { year: 2022, events: ['Enrolled in Master of Science in Computer Science at the Karlsruhe Institute of Technology'] },
   { year: 2024, events: ['Finishing Master Degree'] },
 ];
 
@@ -361,7 +381,7 @@ const LandingPage = () => {
           <h1 className="text-2xl font-bold">PM</h1>
           <div className="hidden md:flex space-x-4">
             <a onClick={() => scrollToSection('about')} className="cursor-pointer hover:text-blue-500 transition-colors">About</a>
-            <a onClick={() => scrollToSection('journey')} className="cursor-pointer hover:text-blue-500 transition-colors">Journey</a>
+            <a onClick={() => scrollToSection('journey')} className="cursor-pointer hover:text-blue-500 transition-colors">CV</a>
             <a onClick={() => scrollToSection('skills')} className="cursor-pointer hover:text-blue-500 transition-colors">Professional Work</a>
             <a onClick={() => scrollToSection('research-projects')} className="cursor-pointer hover:text-blue-500 transition-colors">Funded Projects</a>
             <a onClick={() => scrollToSection('projects')} className="cursor-pointer hover:text-blue-500 transition-colors">Projects</a>
@@ -386,9 +406,9 @@ const LandingPage = () => {
         {isMenuOpen && (
           <div className="md:hidden">
             <a onClick={() => scrollToSection('about')} className="block py-2 px-4 hover:bg-gray-700 transition-colors">About</a>
-            <a onClick={() => scrollToSection('journey')} className="block py-2 px-4 hover:bg-gray-700 transition-colors">Journey</a>
+            <a onClick={() => scrollToSection('journey')} className="block py-2 px-4 hover:bg-gray-700 transition-colors">CV</a>
             <a onClick={() => scrollToSection('skills')} className="block py-2 px-4 hover:bg-gray-700 transition-colors">Skills</a>
-            <a onClick={() => scrollToSection('research-projects')} className="cursor-pointer hover:text-blue-500 transition-colors">Funded Projects</a>
+            <a onClick={() => scrollToSection('research-projects')} className="block py-2 px-4 hover:bg-gray-700 transition-colorss">Funded Projects</a>
             <a onClick={() => scrollToSection('projects')} className="block py-2 px-4 hover:bg-gray-700 transition-colors">Projects</a>
             <a onClick={() => scrollToSection('papers')} className="block py-2 px-4 hover:bg-gray-700 transition-colors">Papers</a>
             <a onClick={() => scrollToSection('courses')} className="block py-2 px-4 hover:bg-gray-700 transition-colors">Masters Degree</a>
@@ -405,7 +425,7 @@ const LandingPage = () => {
         </section>
 
         <section id="journey" className="mb-16 pt-16">
-          <h2 className="text-2xl font-semibold mb-6 text-center">My Journey</h2>
+          <h2 className="text-2xl font-semibold mb-6 text-center">Short CV</h2>
           <div className="relative">
             {timelineEvents.map((event, index) => (
               <TimelineEvent 
@@ -421,7 +441,7 @@ const LandingPage = () => {
         <SkillsSection isDarkMode={isDarkMode} />
         <section id="research-projects" className="mb-16 pt-16">
           <h2 className="text-2xl font-semibold mb-6 text-center">Participation at Funded Research Projects</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {researchProjects.map((project) => (
               <ResearchProjectCard key={project.id} project={project} isDarkMode={isDarkMode} />
             ))}
