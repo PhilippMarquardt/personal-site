@@ -143,18 +143,18 @@ const projects = [
     title: 'Time Logging Project', 
     category: 'C#', 
     image: 'https://www.microsoft.com/en-us/research/uploads/prod/2023/03/AI_Microsoft_Research_Header_1920x720.png', 
-    github: 'https://github.com/yourusername/time-logging-project', 
+    github: 'https://github.com/PhilippMarquardt/time-logging', 
     blogSlug: 'time-logging-project',
-    description: 'A C# application for efficient time tracking and reporting.'
+    description: 'Time Logging Application to Manage Employees Working Times and Create Monthly Reports. Written in C# WPF'
   },
   { 
     id: 2, 
-    title: 'C# Multiplayer Framework for VR/AR', 
+    title: 'C# Multiplayer Framework for VR/AR Applications in Unity', 
     category: 'C#', 
     image: 'https://www.microsoft.com/en-us/research/uploads/prod/2023/03/AI_Microsoft_Research_Header_1920x720.png', 
     github: 'https://github.com/yourusername/vr-ar-multiplayer-framework', 
     blogSlug: 'vr-ar-multiplayer-framework',
-    description: 'A robust framework for developing multiplayer VR and AR experiences in C#.'
+    description: 'A multiplayer framework written in c# for vr and ar applications. Can be used in Unity to enable TCP and UDP based multiplayer sessions with various features.'
   },
   { 
     id: 3, 
@@ -259,7 +259,7 @@ const courses = [
     semester: 1,
     courses: [
       { id: 1, name: 'Deep Learning for Computer Vision II: Advanced Topics', description: 'Learn about newest reserach topics in computer vision' },
-      { id: 2, name: 'Natural Language Processing', description: 'Learn everything about NLP from the ground up starting ' },
+      { id: 2, name: 'Natural Language Processing', description: 'Learn everything about NLP from the ground up starting ', slug:'vns' },
       { id: 3, name: 'Energy Informatics 1', description: 'asd.' },
     ]
   },
