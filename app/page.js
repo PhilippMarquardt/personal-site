@@ -180,10 +180,10 @@ const projects = [
     id: 3, 
     title: 'Microscopy Image Viewer', 
     category: 'Full Stack', 
-    image: 'https://www.microsoft.com/en-us/research/uploads/prod/2023/03/AI_Microsoft_Research_Header_1920x720.png', 
+    image: 'https://github.com/PhilippMarquardt/personal-site/blob/main/public/viewer.png?raw=true', 
     github: 'https://github.com/yourusername/microscopy-image-viewer', 
     live: 'https://microscopy-viewer-demo.com', 
-    blogSlug: 'microscopy-image-viewer',
+    blogSlug: 'viewer',
     description: 'A full-stack application for viewing and analyzing microscopy images.'
   },
   { 
@@ -198,7 +198,7 @@ const projects = [
   },
   { 
     id: 5, 
-    title: 'Reinforcement Learning Project', 
+    title: 'Deep Learning Framework for Training Classification, Segmentation, Object Detection and Instance Segmentation Models', 
     category: 'ML', 
     image: 'https://www.microsoft.com/en-us/research/uploads/prod/2023/03/AI_Microsoft_Research_Header_1920x720.png', 
     github: 'https://github.com/yourusername/reinforcement-learning', 
@@ -207,13 +207,12 @@ const projects = [
   },
   { 
     id: 6, 
-    title: 'Linear Algebra Visualizer', 
-    category: 'Math', 
+    title: 'A simple Machine Learning Trainer and Annotation GUI in C#/WPF', 
+    category: 'ML', 
     image: 'https://www.microsoft.com/en-us/research/uploads/prod/2023/03/AI_Microsoft_Research_Header_1920x720.png', 
-    github: 'https://github.com/yourusername/linear-algebra-visualizer', 
-    live: 'https://linear-algebra-viz.com', 
+    github: 'https://github.com/PhilippMarquardt/Machine-Learning-Trainer', 
     blogSlug: 'linear-algebra-visualizer',
-    description: 'Interactive tool for visualizing linear algebra concepts.'
+    description: 'A simple C#/WPF application do define a custom deep learning architecture. Was extended to include a simple annotation tool for standard image formats.'
   },
 ];
 
@@ -489,12 +488,12 @@ const LandingPage = () => {
                       <Github size={18} className="mr-1" /> GitHub
                     </a>
                     {project.live && (
-                      <Link href={project.live} className="flex items-center text-purple-500 hover:text-purple-600">
+                      <Link href={project.live} className="flex items-center text-blue-500 hover:text-blue-600">
                         <ExternalLink size={18} className="mr-1" /> Live Demo
                       </Link>
                     )}
-                    <Link href={`/blog/${project.blogSlug}`} className="flex items-center text-purple-500 hover:text-purple-600">
-                      <ExternalLink size={18} className="mr-1" /> Blog Post
+                    <Link href={`/blog/${project.blogSlug}`} className="flex items-center text-blue-500 hover:text-blue-600">
+                      <ExternalLink size={18} className="mr-1" /> Details
                     </Link>
                   </div>
                 </div>
