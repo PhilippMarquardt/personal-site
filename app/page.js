@@ -5,6 +5,46 @@ import { Moon, Sun, Github, ExternalLink, Menu, X, FileText, Book, ChevronDown, 
 import Link from 'next/link';
 
 
+const researchProjects = [
+  {
+    id: 1,
+    title: "KI basierte Diagnostik des Lungenkarzinoms zur Unterstützung personalisierter Therapieentscheidungen",
+    funding: "€400,000",
+    link: "https://www.gesundheitsindustrie-bw.de/fachbeitrag/aktuell/ki-gestuetzte-diagnostik-sagt-lungenkrebs-den-kampf#:~:text=Das%20Projektakronym%20IDOL%20steht%20f%C3%BCr,Lungenkarzinoms%20zur%20Unterst%C3%BCtzung%20personalisierter%20Therapieentscheidungen%E2%80%9C.&text=Bisher%20existiert%20noch%20kein%20klassischer,Arzneimittelresistenz%20bei%20Lungenkrebs%20nachweisen%20kann."
+  },
+  {
+    id: 2,
+    title: "Hybridlösung mit kontaktloser VIso-TAktiler Diagnostik",
+    funding: "€2,006,000",
+    link: "https://www.interaktive-technologien.de/projekte/hybridvita"
+  },
+  {
+    id: 3,
+    title: "hyPro – Integration hybrider Intelligenz in die Prozesssteuerung von Produktionsanlagen der Glasumformung",
+    funding: "€680,000",
+    link: "https://www.ipt.fraunhofer.de/de/projekte/hypro.html"
+  },
+];
+
+const ResearchProjectCard = ({ project, isDarkMode }) => (
+  <div className={`border rounded-lg overflow-hidden p-4 ${
+    isDarkMode ? 'border-gray-700 bg-gray-800' : 'border-gray-200 bg-white'
+  }`}>
+    <h3 className="text-lg font-semibold mb-2">{project.title}</h3>
+    <p className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'} mb-2`}>
+      Funding: {project.funding}
+    </p>
+    <a 
+      href={project.link} 
+      target="_blank" 
+      rel="noopener noreferrer" 
+      className="flex items-center text-blue-500 hover:text-blue-600"
+    >
+      <ExternalLink size={18} className="mr-1" /> Learn More
+    </a>
+  </div>
+);
+
 const CourseCard = ({ course, isDarkMode }) => (
   <Link href={`/courses/${course.slug}`} className="block">
     <div 
@@ -188,23 +228,20 @@ const papers = [
   {
     id: 4,
     title: 'Neuromorphic Vision mit Spiking Neural Networks zur Sturzerkennung im betreuten Wohnen',
-    authors: `Sven Nitzsche
-    , Brian Pachideh1
-    , Victor Pazmino1
-    , Norbert Link2
-    , Christoph
-    Schauer2
-    , Lukas Theurer2
-    , Valentin Haas3
-    , Philipp Marquardt3
-    , Sergey Biniaminov3
-    , Jürgen
-    Becker4
-    `,
+    authors: `Sven Nitzsche, Brian Pachideh, Victor Pazmino, Norbert Link, Christoph Schauer, Lukas Theurer, Valentin Haas, Philipp Marquardt, Sergey Biniaminov, Jürgen Becker`,
     journal: 'IEEE Robotics and Automation Letters',
     year: 2021,
     link: 'https://dl.gi.de/items/f27e40ad-d9d6-426f-b258-32e88f08b768',
     description: 'Neuromorphic Vision mit Spiking Neural Networks zur Sturzerkennung im betreuten Wohnen'
+  },
+  {
+    id: 5,
+    title: 'Nutzen der partizipatorischen Mitwirkung von PatientInnen an der Entwicklung einer dermatologischen Therapie-App – ein Bericht aus der Praxis',
+    authors: 'Anne Koopmann, Anna Maria Pfeifer, Lara Schweickart, Nathalie Biniaminov, Valentin Haas, Philipp Marquardt, Astrid Gößwein, Christopher Czaban, Sergey Biniaminov, Mara Blauth, Caroline Glatzel, Christoph Zimmermann, Wilhelm Stork, Victor Olsavszky, Astrid Schmieder',
+    journal: 'Die Dermatologie',
+    year: 2024,
+    link: 'https://doi.org/10.1007/s00105-024-05326-7',
+    description: 'Benefits of participatory involvement of patients in the development of a dermatological treatment app—A report from the practice'
   }
 ];
 
@@ -221,8 +258,8 @@ const courses = [
   {
     semester: 1,
     courses: [
-      { id: 1, name: 'Deep Learning for Computer Vision II: Advanced Topics', description: 'asd.' },
-      { id: 2, name: 'Natural Language Processing', description: 'dsa.' },
+      { id: 1, name: 'Deep Learning for Computer Vision II: Advanced Topics', description: 'Learn about newest reserach topics in computer vision' },
+      { id: 2, name: 'Natural Language Processing', description: 'Learn everything about NLP from the ground up starting ' },
       { id: 3, name: 'Energy Informatics 1', description: 'asd.' },
     ]
   },
@@ -244,7 +281,7 @@ const courses = [
     semester: 3,
     courses: [
       { id: 18, name: 'Humanoid Robots - Seminar', description: 'asd.' },
-      { id: 17, name: 'IT Security', description: 'asd.' },
+      { id: 17, name: 'IT Security', description: 'asd.', slug:'itsec'},
       { id: 16, name: 'Machine Learning in Climate and Environmental Sciences ', description: 'asd.', slug:'envsciences' },
     ]
   },
@@ -326,6 +363,7 @@ const LandingPage = () => {
             <a onClick={() => scrollToSection('about')} className="cursor-pointer hover:text-blue-500 transition-colors">About</a>
             <a onClick={() => scrollToSection('journey')} className="cursor-pointer hover:text-blue-500 transition-colors">Journey</a>
             <a onClick={() => scrollToSection('skills')} className="cursor-pointer hover:text-blue-500 transition-colors">Professional Work</a>
+            <a onClick={() => scrollToSection('research-projects')} className="cursor-pointer hover:text-blue-500 transition-colors">Funded Projects</a>
             <a onClick={() => scrollToSection('projects')} className="cursor-pointer hover:text-blue-500 transition-colors">Projects</a>
             <a onClick={() => scrollToSection('papers')} className="cursor-pointer hover:text-blue-500 transition-colors">Papers</a>
             <a onClick={() => scrollToSection('courses')} className="cursor-pointer hover:text-blue-500 transition-colors">Masters Degree</a>
@@ -350,6 +388,7 @@ const LandingPage = () => {
             <a onClick={() => scrollToSection('about')} className="block py-2 px-4 hover:bg-gray-700 transition-colors">About</a>
             <a onClick={() => scrollToSection('journey')} className="block py-2 px-4 hover:bg-gray-700 transition-colors">Journey</a>
             <a onClick={() => scrollToSection('skills')} className="block py-2 px-4 hover:bg-gray-700 transition-colors">Skills</a>
+            <a onClick={() => scrollToSection('research-projects')} className="cursor-pointer hover:text-blue-500 transition-colors">Funded Projects</a>
             <a onClick={() => scrollToSection('projects')} className="block py-2 px-4 hover:bg-gray-700 transition-colors">Projects</a>
             <a onClick={() => scrollToSection('papers')} className="block py-2 px-4 hover:bg-gray-700 transition-colors">Papers</a>
             <a onClick={() => scrollToSection('courses')} className="block py-2 px-4 hover:bg-gray-700 transition-colors">Masters Degree</a>
@@ -380,6 +419,14 @@ const LandingPage = () => {
         </section>
 
         <SkillsSection isDarkMode={isDarkMode} />
+        <section id="research-projects" className="mb-16 pt-16">
+          <h2 className="text-2xl font-semibold mb-6 text-center">Participation at Funded Research Projects</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {researchProjects.map((project) => (
+              <ResearchProjectCard key={project.id} project={project} isDarkMode={isDarkMode} />
+            ))}
+          </div>
+        </section>
 
         <section id="projects" className="mb-16 pt-16">
           <h2 className="text-2xl font-semibold mb-4 text-center">Projects</h2>
@@ -437,36 +484,36 @@ const LandingPage = () => {
         </section>
 
         <section id="papers" className="pt-16">
-          <h2 className="text-2xl font-semibold mb-6 text-center">Published Papers</h2>
-          <div className="grid grid-cols-1 gap-6">
-            {papers.map((paper) => (
-              <div 
-                key={paper.id} 
-                className={`border rounded-lg overflow-hidden p-4 ${
-                  isDarkMode ? 'border-gray-700 bg-gray-800' : 'border-gray-200 bg-white'
-                }`}
-              >
-                <h3 className="text-lg font-semibold mb-2">{paper.title}</h3>
-                <p className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                  {paper.authors} • {paper.journal} • {paper.year}
-                </p>
-                <p className={`mt-2 text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
-                  {paper.description}
-                </p>
-                <div className="mt-4">
-                  <a 
-                    href={paper.link} 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    className="flex items-center text-blue-500 hover:text-blue-600"
-                  >
-                    <FileText size={18} className="mr-1" /> Read Paper
-                  </a>
-                </div>
+        <h2 className="text-2xl font-semibold mb-6 text-center">Published Papers</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {papers.map((paper) => (
+            <div 
+              key={paper.id} 
+              className={`border rounded-lg overflow-hidden p-4 ${
+                isDarkMode ? 'border-gray-700 bg-gray-800' : 'border-gray-200 bg-white'
+              }`}
+            >
+              <h3 className="text-lg font-semibold mb-2">{paper.title}</h3>
+              <p className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                {paper.authors} • {paper.journal} • {paper.year}
+              </p>
+              <p className={`mt-2 text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+                {paper.description}
+              </p>
+              <div className="mt-4">
+                <a 
+                  href={paper.link} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="flex items-center text-blue-500 hover:text-blue-600"
+                >
+                  <FileText size={18} className="mr-1" /> Read Paper
+                </a>
               </div>
-            ))}
-          </div>
-        </section>
+            </div>
+          ))}
+        </div>
+      </section>
 
         <section id="courses" className="mb-16 pt-16">
           <h2 className="text-2xl font-semibold mb-6 text-center">Computer Science Master at the Karlsruhe Institute of Technology</h2>

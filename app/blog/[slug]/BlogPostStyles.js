@@ -4,14 +4,20 @@ export default function BlogPostStyles() {
   return (
     <style jsx global>{`
       .light-content pre {
-        background-color: #f3f3f3 !important;
+        background-color: #2e2e2e !important;
       }
       .light-content code {
-        color: #333;
-        background-color: #f3f3f3;
+        color: #ddd;
+        background-color: #2e2e2e;
       }
       .light-content .hljs {
-        background: #f3f3f3;
+        background: #2e2e2e;
+      }
+      .light-content img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin: 1rem auto;
       }
     `}</style>
   );
