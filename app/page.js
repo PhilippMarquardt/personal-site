@@ -317,21 +317,41 @@ const courses = [
 
 const TimelineEvent = ({ year, events, isDarkMode }) => {
   return (
-    <div className="mb-8 flex">
-      <div className="flex flex-col items-center mr-4">
-        <div className={`w-12 h-12 rounded-full ${isDarkMode ? 'bg-blue-500' : 'bg-blue-600'} flex items-center justify-center`}>
-          <span className="text-white text-sm font-bold">{year}</span>
-        </div>
-        <div className="w-0.5 h-full bg-gray-300 mt-2"></div>
-      </div>
-      <div className="flex-grow">
+    <div className="flex-shrink-0 w-64 mr-6">
+      <h3 className={`text-xl text-center font-semibold mb-4 ${isDarkMode ? 'text-blue-400' : 'text-blue-600'}`}>
+        {year}
+      </h3>
+      <div className={`space-y-2 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
         {events.map((event, index) => (
-          <div key={index} className={`mb-4 p-4 rounded-lg ${isDarkMode ? 'bg-gray-800' : 'bg-white'}`}>
-            <p className={`text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>{event}</p>
+          <div 
+            key={index} 
+            className={`p-2 rounded-lg ${isDarkMode ? 'bg-gray-800' : 'bg-white'} text-sm`}
+          >
+            {event}
           </div>
         ))}
       </div>
     </div>
+  );
+};
+
+const ShortCV = ({ isDarkMode }) => {
+  return (
+    <section id="journey" className="mb-16 pt-16">
+      <h2 className="text-2xl font-semibold mb-6 text-center">Short CV</h2>
+      <div className="overflow-x-auto">
+        <div className="flex pb-4">
+          {timelineEvents.map((event, index) => (
+            <TimelineEvent 
+              key={index}
+              year={event.year}
+              events={event.events}
+              isDarkMode={isDarkMode}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
   );
 };
 
@@ -423,19 +443,7 @@ const LandingPage = () => {
           </p>
         </section>
 
-        <section id="journey" className="mb-16 pt-16">
-          <h2 className="text-2xl font-semibold mb-6 text-center">Short CV</h2>
-          <div className="relative">
-            {timelineEvents.map((event, index) => (
-              <TimelineEvent 
-                key={index}
-                year={event.year}
-                events={event.events}
-                isDarkMode={isDarkMode}
-              />
-            ))}
-          </div>
-        </section>
+        <ShortCV isDarkMode={isDarkMode} />
 
         <SkillsSection isDarkMode={isDarkMode} />
         <section id="research-projects" className="mb-16 pt-16">
