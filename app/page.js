@@ -192,7 +192,7 @@ const projects = [
     image: 'https://www.microsoft.com/en-us/research/uploads/prod/2023/03/AI_Microsoft_Research_Header_1920x720.png', 
     github: 'https://github.com/yourusername/decision-trees', 
     live: '/decisiontree', 
-    blogSlug: 'decision-trees-implementation',
+    page: 'machinelearningdemo',
     description: 'An implementation of decision trees for machine learning classification tasks.'
   },
   { 
@@ -300,7 +300,7 @@ const ProjectsSection = ({ isDarkMode }) => {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {filteredProjects.map((project) => (
           <div key={project.id} className="flex">
-            <Link href={`/blog/${project.blogSlug}`} passHref className="w-full">
+            <Link href={project.blogSlug ? `/blog/${project.blogSlug}` : `/${project.page}`} passHref className="w-full">
               <div 
                 className={`relative flex flex-col h-full border rounded-lg overflow-hidden cursor-pointer transition-transform hover:scale-105 ${
                   isDarkMode ? 'border-gray-700 bg-gray-800' : 'border-gray-200 bg-white'

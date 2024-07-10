@@ -1,3 +1,5 @@
+
+
 import { getPostData, getAllPostSlugs } from '../../../utils/markdown';
 import Link from 'next/link';
 import BlogPostStyles from './BlogPostStyles';
@@ -36,7 +38,7 @@ export default async function BlogPost({ params }) {
 }
 
 export const metadata = {
-  title: 'Blog Post',
+  title: 'Details',
   head: [
     <link
       key="katex-css"
