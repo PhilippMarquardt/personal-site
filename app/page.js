@@ -265,9 +265,9 @@ const papers = [
 ];
 
 const timelineEvents = [
-  { year: 2016, events: ['Created first application and sold it to a company that uses it until this day'] },
-  { year: 2018, events: ['Started Bachelor of Science in Computer Science at the TU Darmstadt', 'Started working at the HS Analysis GmbH as backend developer', 'Completed the Udacity Deep Learning Nanodegree', 'Lead workshop group at hackathon with Microsoft being a sponsor'] },
-  { year: 2019, events: ['Started working a second job at the Fraunhofer Insitute for Secure Information Technology in Darmstadt', 'First paper', 'Lead workshop group at hackathon with Microsoft being a sponsor', 'Lead a workshop group at the Etengo Symposiom which Jürgen Schmidhuber was present at'] },
+
+  { year: 2018, events: ['Started Bachelor of Science in Computer Science at the TU Darmstadt', 'Started working at the HS Analysis GmbH as backend developer', 'Completed the Udacity Deep Learning Nanodegree'] },
+  { year: 2019, events: ['Second job at the Fraunhofer Insitute for Secure Information Technology in Darmstadt'] },
   { year: 2022, events: ['Graduated from TU Darmstadt with the Thesis: Mulit-Modality Abdominal Multi-Organ Segmentation'] },
   { year: 2022, events: ['Enrolled in Master of Science in Computer Science at the Karlsruhe Institute of Technology'] },
   { year: 2024, events: ['Finishing Master Degree'] },
@@ -339,8 +339,8 @@ const ShortCV = ({ isDarkMode }) => {
   return (
     <section id="journey" className="mb-16 pt-16">
       <h2 className="text-2xl font-semibold mb-6 text-center">Short CV</h2>
-      <div className="overflow-x-auto">
-        <div className="flex pb-4">
+      <div className="overflow-x-auto ">
+        <div className="flex pb-4 ">
           {timelineEvents.map((event, index) => (
             <TimelineEvent 
               key={index}
