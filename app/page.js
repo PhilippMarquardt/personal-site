@@ -4,7 +4,6 @@ import React, { useState, useEffect } from 'react';
 import { Moon, Sun, Github, ExternalLink, Menu, X, FileText, Book, ChevronDown, ChevronUp } from 'lucide-react';
 import Link from 'next/link';
 
-
 const researchProjects = [
   {
     id: 1,
@@ -264,6 +263,89 @@ const papers = [
   }
 ];
 
+const ProjectsSection = ({ isDarkMode }) => {
+  const [selectedCategory, setSelectedCategory] = useState('All');
+
+  const filteredProjects = selectedCategory === 'All'
+    ? projects
+    : projects.filter(project => project.category === selectedCategory);
+
+  const getCategoryColor = (category) => {
+    switch(category) {
+
+      default: return 'bg-blue-500';
+    }
+  };
+
+  return (
+    <section id="projects" className="mb-16 pt-16">
+      <h2 className="text-2xl font-semibold mb-4 text-center">Projects</h2>
+      <div className="flex flex-wrap gap-4 mb-6">
+        {categories.map((category) => (
+          <button
+            key={category}
+            onClick={() => setSelectedCategory(category)}
+            className={`px-4 py-2 rounded-full transition-colors ${
+              selectedCategory === category
+                ? 'bg-blue-600 text-white'
+                : isDarkMode
+                ? 'bg-gray-800 hover:bg-gray-700'
+                : 'bg-gray-200 hover:bg-gray-300'
+            }`}
+          >
+            {category}
+          </button>
+        ))}
+      </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {filteredProjects.map((project) => (
+          <div key={project.id} className="flex">
+            <Link href={`/blog/${project.blogSlug}`} passHref className="w-full">
+              <div 
+                className={`relative flex flex-col h-full border rounded-lg overflow-hidden cursor-pointer transition-transform hover:scale-105 ${
+                  isDarkMode ? 'border-gray-700 bg-gray-800' : 'border-gray-200 bg-white'
+                }`}
+              >
+                <div className={`absolute top-2 right-2 px-2 py-1 rounded-full text-xs font-semibold text-white ${getCategoryColor(project.category)}`}>
+                  {project.category}
+                </div>
+                <img src={project.image} alt={project.title} className="w-full h-40 object-cover" />
+                <div className="flex flex-col flex-grow p-4">
+                  <h3 className="text-lg font-semibold mb-2">{project.title}</h3>
+                  <p className={`mt-2 text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-600'} flex-grow`}>
+                    {project.description}
+                  </p>
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    <button 
+                      className="flex items-center text-blue-500 hover:text-blue-600 transition-colors"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        window.open(project.github, '_blank');
+                      }}
+                    >
+                      <Github size={18} className="mr-1" /> GitHub
+                    </button>
+                    {project.live && (
+                      <button 
+                        className="flex items-center text-blue-500 hover:text-blue-600 transition-colors"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          window.open(project.live, '_blank');
+                        }}
+                      >
+                        <ExternalLink size={18} className="mr-1" /> Live Demo
+                      </button>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </Link>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+};
 const timelineEvents = [
 
   { year: 2018, events: ['Started Bachelor of Science in Computer Science at the TU Darmstadt', 'Started working at the HS Analysis GmbH as backend developer', 'Completed the Udacity Deep Learning Nanodegree'] },
@@ -452,60 +534,7 @@ const LandingPage = () => {
           </div>
         </section>
 
-        <section id="projects" className="mb-16 pt-16">
-          <h2 className="text-2xl font-semibold mb-4 text-center">Projects</h2>
-          <div className="flex flex-wrap gap-4 mb-6">
-            {categories.map((category) => (
-              <button
-                key={category}
-                onClick={() => setSelectedCategory(category)}
-                className={`px-4 py-2 rounded-full transition-colors ${
-                  selectedCategory === category
-                    ? 'bg-blue-600 text-white'
-                    : isDarkMode
-                    ? 'bg-gray-800 hover:bg-gray-700'
-                    : 'bg-gray-200 hover:bg-gray-300'
-                }`}
-              >
-                {category}
-              </button>
-            ))}
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredProjects.map((project) => (
-              <div 
-                key={project.id} 
-                className={`border rounded-lg overflow-hidden ${
-                  isDarkMode ? 'border-gray-700 bg-gray-800' : 'border-gray-200 bg-white'
-                }`}
-              >
-                <img src={project.image} alt={project.title} className="w-full h-40 object-cover" />
-                <div className="p-4">
-                  <h3 className="text-lg font-semibold mb-2">{project.title}</h3>
-                  <span className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                    {project.category}
-                  </span>
-                  <p className={`mt-2 text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
-                    {project.description}
-                  </p>
-                  <div className="mt-4 flex flex-wrap gap-2">
-                    <a href={project.github} target="_blank" rel="noopener noreferrer" className="flex items-center text-blue-500 hover:text-blue-600">
-                      <Github size={18} className="mr-1" /> GitHub
-                    </a>
-                    {project.live && (
-                      <Link href={project.live} className="flex items-center text-blue-500 hover:text-blue-600">
-                        <ExternalLink size={18} className="mr-1" /> Live Demo
-                      </Link>
-                    )}
-                    <Link href={`/blog/${project.blogSlug}`} className="flex items-center text-blue-500 hover:text-blue-600">
-                      <ExternalLink size={18} className="mr-1" /> Details
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
+        <ProjectsSection isDarkMode={isDarkMode} />
 
         <section id="papers" className="pt-16">
         <h2 className="text-2xl font-semibold mb-6 text-center">Published Papers</h2>
