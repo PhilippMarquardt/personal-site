@@ -317,7 +317,7 @@ const courses = [
 
 const TimelineEvent = ({ year, events, isDarkMode }) => {
   return (
-    <div className="flex-shrink-0 w-64 mr-6">
+    <div className="w-full sm:w-64 p-4">
       <h3 className={`text-xl text-center font-semibold mb-4 ${isDarkMode ? 'text-blue-400' : 'text-blue-600'}`}>
         {year}
       </h3>
@@ -339,17 +339,15 @@ const ShortCV = ({ isDarkMode }) => {
   return (
     <section id="journey" className="mb-16 pt-16">
       <h2 className="text-2xl font-semibold mb-6 text-center">Short CV</h2>
-      <div className="overflow-x-auto ">
-        <div className="flex pb-4 ">
-          {timelineEvents.map((event, index) => (
-            <TimelineEvent 
-              key={index}
-              year={event.year}
-              events={event.events}
-              isDarkMode={isDarkMode}
-            />
-          ))}
-        </div>
+      <div className="flex flex-wrap justify-center">
+        {timelineEvents.map((event, index) => (
+          <TimelineEvent 
+            key={index}
+            year={event.year}
+            events={event.events}
+            isDarkMode={isDarkMode}
+          />
+        ))}
       </div>
     </section>
   );
