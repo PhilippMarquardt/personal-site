@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@tailwindcss/typography": "^0.5.13",
+    "@vercel/speed-insights": "^1.0.12",
     "gray-matter": "^4.0.3",
     "highlight.js": "^11.10.0",
     "katex": "^0.16.11",
