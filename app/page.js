@@ -67,8 +67,8 @@ const ResearchProjectCard = ({ project, isDarkMode }) => (
 const CourseCard = ({ course, isDarkMode }) => (
   <Link href={`/courses/${course.slug}`} className="block">
     <div 
-      className={`border rounded-lg overflow-hidden p-4 transition-colors ${
-        isDarkMode ? 'border-gray-700 bg-gray-800 hover:bg-gray-700' : 'border-gray-200 bg-white hover:bg-gray-50'
+      className={`border rounded-lg overflow-hidden p-4 transition-transform hover:scale-105 ${
+        isDarkMode ? 'border-gray-700 bg-gray-800' : 'border-gray-200 bg-white'
       }`}
     >
       <h4 className="text-lg font-semibold mb-2 flex items-start">
