@@ -436,7 +436,7 @@ const ShortCV = ({ isDarkMode }) => {
 
 const LandingPage = () => {
   const [selectedCategory, setSelectedCategory] = useState('All');
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(true);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const filteredProjects = selectedCategory === 'All'
