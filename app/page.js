@@ -186,13 +186,13 @@ const projects = [
   },
   { 
     id: 4, 
-    title: 'Decision Trees Implementation', 
+    title: 'Machine Learning Basic Concepts Implementation and Visualization', 
     category: 'ML', 
     image: 'https://www.microsoft.com/en-us/research/uploads/prod/2023/03/AI_Microsoft_Research_Header_1920x720.png', 
     github: 'https://github.com/yourusername/decision-trees', 
 
     page: 'machinelearningdemo',
-    description: 'An implementation of decision trees for machine learning classification tasks.'
+    description: 'An implementation of multiple basic machine learning concepts.'
   },
   { 
     id: 5, 
@@ -391,7 +391,7 @@ const courses = [
     courses: [
       { id: 18, name: 'Humanoid Robots - Seminar', description: 'Wrote a paper about newest trends in Movement Primitives' },
       { id: 17, name: 'IT Security', description: 'Learned advanced topics in cryptography and IT security, including sophisticated techniques and security primitives to achieve protection goals. Gained an understanding of scientific evaluation and analysis methods for IT security, such as game-based formalization of confidentiality and integrity, and concepts of security and anonymity. Acquired knowledge about data types, personal references, legal, and technical foundations of data protection. Learned the basics of system security, including buffer overflow and return-oriented programming. Explored various mechanisms for anonymous communication (TOR, Nym, ANON) and evaluated their effectiveness. Understood blockchains and their consensus mechanisms, assessing their strengths and weaknesses.', slug:'itsec'},
-      { id: 16, name: 'Machine Learning in Climate and Environmental Sciences ', description: 'This module covers key concepts for real-world applications of machine learning, focusing on environmental data science. Topics include the foundations of machine learning (such as the curse of dimensionality, cross-validation, cost functions, and feature engineering), widely applied regression, classification, and unsupervised learning algorithms (like LASSO, random forests, Gaussian processes, neural networks, LSTMs, transformers, and self-organizing maps), time series forecasting, and causal inference. It also explores explainable AI methods (such as SHAP value analyses, feature permutation methods, and intrinsically interpretable methods).', slug:'envsciences' },
+      { id: 21, name: 'Machine Learning in Climate and Environmental Sciences ', description: 'This module covers key concepts for real-world applications of machine learning, focusing on environmental data science. Topics include the foundations of machine learning (such as the curse of dimensionality, cross-validation, cost functions, and feature engineering), widely applied regression, classification, and unsupervised learning algorithms (like LASSO, random forests, Gaussian processes, neural networks, LSTMs, transformers, and self-organizing maps), time series forecasting, and causal inference. It also explores explainable AI methods (such as SHAP value analyses, feature permutation methods, and intrinsically interpretable methods).', slug:'envsciences' },
     ]
   },
   {
