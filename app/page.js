@@ -368,37 +368,37 @@ const courses = [
     semester: 1,
     courses: [
       { id: 1, name: 'Deep Learning for Computer Vision II: Advanced Topics', description: 'Learn about newest reserach topics in computer vision' },
-      { id: 2, name: 'Natural Language Processing', description: 'Learn everything about NLP from the ground up starting ', slug:'vns' },
-      { id: 3, name: 'Energy Informatics 1', description: 'asd.' },
+      { id: 2, name: 'Natural Language Processing', description: 'Learn everything about NLP from the ground up starting from basic morphology and ending with current state of the art llms ', slug:'vns' },
+      { id: 3, name: 'Energy Informatics 1', description: 'Learned about energy forms, storage, transmission, and conversion; the use and evaluation of equations; energy system components; energy informatics applications; analysis of the German energy system; energy economics; and the Smart Grid concept. The module covered energy forms, systems, storage, power plant processes, renewable energies, energy transmission networks, future electrical networks, and energy economics.' },
     ]
   },
   {
     semester: 2,
     courses: [
-      { id: 4, name: 'Machine Translation', description: '.', slug:'machinetranslation' },
-      { id: 5, name: 'Practical Course Computer Vision for Human-Computer Interaction', description: '.asd' },
-      { id: 9, name: 'Machine Learning for Natural Sciences Exercises', description: 'asd.' },
-      { id: 10, name: 'Advanced Artificial Intelligence', description: 'asd.' },
-      { id: 11, name: 'Research Practical Course: Interactive Learning', description: 'asd.', slug:'interactivelearning' },
-      { id: 12, name: 'Seminar: Interactive Learning', description: 'ads.' },
-      { id: 13, name: 'Human Computer Interaction ', description: 'asd.' },
-      { id: 14, name: 'Energy Informatics 2', description: 'asd.' },
-      { id: 15, name: 'Software Engineering II', description: 'asd.' },
+      { id: 4, name: 'Machine Translation', description: 'Learned about linguistic approaches to machine translation, with a focus on methods and algorithms for statistical machine translation (SMT), including word alignment, phrase extraction, language modeling, decoding, and optimization. Explored methods for evaluating machine translations and examined applications of machine translation through the example of simultaneous speech-to-speech translation. Practically applied the acquired knowledge by training a translation system during exercises.', slug:'machinetranslation' },
+      { id: 5, name: 'Practical Course Computer Vision for Human-Computer Interaction', description: 'Created a graph-explaining system for visually impaired people.' },
+      { id: 9, name: 'Machine Learning for Natural Sciences Exercises', description: '' },
+      { id: 10, name: 'Advanced Artificial Intelligence', description: 'Learned about the key elements of technical cognitive systems and their functions. Understood the algorithms and methods of AI to model cognitive systems. Developed and analyzed different components of a system and applied this knowledge to new applications, comparing various methods.' },
+      { id: 11, name: 'Research Practical Course: Interactive Learning', description: 'Developed an emotion detection system using multiple modalities and multimodal large language models (LLMs).', slug:'interactivelearning' },
+      { id: 12, name: 'Seminar: Interactive Learning', description: 'Seminar about newest topics on Interactive Learning' },
+      { id: 13, name: 'Human Computer Interaction ', description: 'Covered human information processing, including models, physiological and psychological basics, human senses, and action processes. Learned about design fundamentals and methods, as well as input and output units for computers, embedded systems, and mobile devices. Studied principles, guidelines, and standards for designing user interfaces. Explored technical foundations and examples for designing user interfaces, such as text dialogues, forms, menu systems, graphical interfaces, web interfaces, audio dialogue systems, haptic interaction, and gestures. Examined methods for modeling user interfaces, including abstract interaction descriptions and integration into requirements analysis and software design processes. Evaluated human-machine interaction systems using tools, assessment methods, performance measurement, and checklists. Practically applied these fundamentals through exercises and developed new and alternative user interfaces.' },
+      { id: 14, name: 'Energy Informatics 2', description: 'Learned about the architectures, protocols, and standards of modern control center software and concepts. Gained knowledge on hardware and software for simulating and analyzing energy networks. Acquired skills in assessing Big Data in future energy systems and applying data analysis methods to energy datasets. Understood the basics of system theory, control engineering, and mathematical optimization related to energy networks. Discussed the foundations of real-time, reliable, and secure software systems in energy systems. Evaluated the Energy Lab 2.0, future scenarios, and the overall energy system. Assessed the significance of IT approaches and methods for the future energy system and the relevance of energy informatics for academic progression.' },
+      { id: 15, name: 'Software Engineering II', description: 'Covered advanced topics in software engineering, including requirements engineering, software processes, software architectures, enterprise software patterns, security, software quality, software maintainability, dependability, secure coding guidelines, model-driven development, domain-driven design, and embedded software.' },
     ]
   },
   {
     semester: 3,
     courses: [
-      { id: 18, name: 'Humanoid Robots - Seminar', description: 'asd.' },
-      { id: 17, name: 'IT Security', description: 'asd.', slug:'itsec'},
-      { id: 16, name: 'Machine Learning in Climate and Environmental Sciences ', description: 'asd.', slug:'envsciences' },
+      { id: 18, name: 'Humanoid Robots - Seminar', description: 'Wrote a paper about newest trends in Movement Primitives' },
+      { id: 17, name: 'IT Security', description: 'Learned advanced topics in cryptography and IT security, including sophisticated techniques and security primitives to achieve protection goals. Gained an understanding of scientific evaluation and analysis methods for IT security, such as game-based formalization of confidentiality and integrity, and concepts of security and anonymity. Acquired knowledge about data types, personal references, legal, and technical foundations of data protection. Learned the basics of system security, including buffer overflow and return-oriented programming. Explored various mechanisms for anonymous communication (TOR, Nym, ANON) and evaluated their effectiveness. Understood blockchains and their consensus mechanisms, assessing their strengths and weaknesses.', slug:'itsec'},
+      { id: 16, name: 'Machine Learning in Climate and Environmental Sciences ', description: 'This module covers key concepts for real-world applications of machine learning, focusing on environmental data science. Topics include the foundations of machine learning (such as the curse of dimensionality, cross-validation, cost functions, and feature engineering), widely applied regression, classification, and unsupervised learning algorithms (like LASSO, random forests, Gaussian processes, neural networks, LSTMs, transformers, and self-organizing maps), time series forecasting, and causal inference. It also explores explainable AI methods (such as SHAP value analyses, feature permutation methods, and intrinsically interpretable methods).', slug:'envsciences' },
     ]
   },
   {
     semester: 4,
     courses: [
-      { id: 19, name: 'Advanced Machine Learning and Data Science', description: 'asd.' },
-      { id: 20, name: 'Master Thesis', description: 'asd.' },
+      { id: 19, name: 'Advanced Machine Learning and Data Science', description: 'Develop a system to regress measures of option pricing before and after ecb meetings to determine their impact on the price' },
+      { id: 20, name: 'Master Thesis', description: 'Few Shot Image to Image Translation' },
     
     ]
   },
