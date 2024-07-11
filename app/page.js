@@ -199,7 +199,7 @@ const projects = [
     title: 'Deep Learning Framework for Training Classification, Segmentation, Object Detection and Instance Segmentation Models', 
     category: 'ML', 
     image: 'https://www.microsoft.com/en-us/research/uploads/prod/2023/03/AI_Microsoft_Research_Header_1920x720.png', 
-    github: 'https://github.com/yourusername/reinforcement-learning', 
+    github: 'https://github.com/PhilippMarquardt/VisualDL', 
     blogSlug: 'reinforcement-learning-project',
     description: 'Exploration of reinforcement learning algorithms and applications.'
   },
