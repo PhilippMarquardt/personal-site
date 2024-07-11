@@ -423,7 +423,7 @@ const AboutMe = ({ isDarkMode }) => {
       <h2 className="text-2xl font-semibold mb-4 text-center">About Me</h2>
       <div className={`bg-opacity-50 rounded-lg p-6 ${isDarkMode ? 'bg-gray-800' : 'bg-white'}`}>
         <p className={`text-lg mb-4 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-          Hey! I'm Philipp Marquardt, a Machine Learning Engineer completing my Computer Science Master's at KIT. I've been exploring AI and machine learning since 2018, and I'm always excited to take on new challenges.
+          Hey! I am Philipp Marquardt, a Machine Learning Engineer completing my Computer Science Masters at KIT. I have been exploring AI and machine learning since 2018, and I'm always excited to take on new challenges.
         </p>
         
         <h3 className={`text-xl font-semibold mb-2 text-center ${isDarkMode ? 'text-gray-200' : 'text-gray-800'}`}>My Areas of Interest:</h3>
@@ -436,7 +436,7 @@ const AboutMe = ({ isDarkMode }) => {
         </ul>
         
         <p className={`text-lg ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-          Currently, I'm working at HS Analysis GmbH, developing deep learning systems for medical image analysis. In my free time, I enjoy working on full-stack projects and improving my skills in Python, C#, and JavaScript.
+          Currently, I am working at HS Analysis GmbH, developing deep learning systems for medical image analysis. In my free time, I enjoy working on full-stack projects and improving my skills in Python, C#, and JavaScript.
         </p>
         
         <p className={`text-lg mt-4 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
