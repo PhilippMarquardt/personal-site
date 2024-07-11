@@ -416,6 +416,37 @@ const TimelineEvent = ({ year, events, isDarkMode }) => {
   );
 };
 
+
+const AboutMe = ({ isDarkMode }) => {
+  return (
+    <section id="about" className="mb-12 pt-16">
+      <h2 className="text-2xl font-semibold mb-4 text-center">About Me</h2>
+      <div className={`bg-opacity-50 rounded-lg p-6 ${isDarkMode ? 'bg-gray-800' : 'bg-white'}`}>
+        <p className={`text-lg mb-4 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+          Hey! I'm Philipp Marquardt, a Machine Learning Engineer completing my Computer Science Master's at KIT. I've been exploring AI and machine learning since 2018, and I'm always excited to take on new challenges.
+        </p>
+        
+        <h3 className={`text-xl font-semibold mb-2 text-center ${isDarkMode ? 'text-gray-200' : 'text-gray-800'}`}>My Areas of Interest:</h3>
+        <ul className={`list-none text-center mb-4 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+          <li>• Image processing with few-shot learning and diffusion models</li>
+          <li>• Machine learning for climate science and energy grids</li>
+          <li>• AI in robotics, especially mimicking human movement</li>
+          <li>• Applications of ML in material sciences and finance</li>
+          <li>• Natural language processing</li>
+        </ul>
+        
+        <p className={`text-lg ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+          Currently, I'm working at HS Analysis GmbH, developing deep learning systems for medical image analysis. In my free time, I enjoy working on full-stack projects and improving my skills in Python, C#, and JavaScript.
+        </p>
+        
+        <p className={`text-lg mt-4 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+          
+        </p>
+      </div>
+    </section>
+  );
+};
+
 const ShortCV = ({ isDarkMode }) => {
   return (
     <section id="journey" className="mb-16 pt-16">
@@ -515,12 +546,7 @@ const LandingPage = () => {
       </nav>
 
       <main className="container mx-auto px-4 py-12 mt-16">
-        <section id="about" className="mb-12 pt-16">
-          <h2 className="text-2xl font-semibold mb-4 text-center">About Me</h2>
-          <p className="text-lg">
-            HIIIIII
-          </p>
-        </section>
+        <AboutMe isDarkMode={isDarkMode} />
 
         <ShortCV isDarkMode={isDarkMode} />
 
