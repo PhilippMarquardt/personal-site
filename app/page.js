@@ -181,7 +181,6 @@ const projects = [
     category: 'Full Stack', 
     image: 'https://github.com/PhilippMarquardt/personal-site/blob/main/public/viewer.png?raw=true', 
     github: 'https://github.com/yourusername/microscopy-image-viewer', 
-    live: 'https://microscopy-viewer-demo.com', 
     blogSlug: 'viewer',
     description: 'A full-stack application for viewing and analyzing microscopy images.'
   },
@@ -191,7 +190,7 @@ const projects = [
     category: 'ML', 
     image: 'https://www.microsoft.com/en-us/research/uploads/prod/2023/03/AI_Microsoft_Research_Header_1920x720.png', 
     github: 'https://github.com/yourusername/decision-trees', 
-    live: '/decisiontree', 
+
     page: 'machinelearningdemo',
     description: 'An implementation of decision trees for machine learning classification tasks.'
   },
