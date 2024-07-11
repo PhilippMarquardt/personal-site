@@ -516,7 +516,7 @@ const LandingPage = () => {
     <div className={`min-h-screen ${isDarkMode ? 'bg-gray-900 text-white' : 'bg-gray-100 text-gray-900'}`}>
       <nav className={`fixed top-0 left-0 right-0 z-50 ${isDarkMode ? 'bg-gray-800' : 'bg-white'} shadow-md`}>
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <h1 className="text-2xl font-bold">PM</h1>
+          <h1 className="text-2xl font-bold">Philipp Marquardt</h1>
           <div className="hidden md:flex space-x-4">
             <a onClick={() => scrollToSection('about')} className="cursor-pointer hover:text-blue-500 transition-colors">About</a>
             <a onClick={() => scrollToSection('journey')} className="cursor-pointer hover:text-blue-500 transition-colors">CV</a>
