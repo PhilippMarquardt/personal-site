@@ -8,8 +8,8 @@ import 'highlight.js/styles/github.css';
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "PM",
-  description: "pm",
+  title: "Philipp Marquardt",
+  description: "Personal Site",
 };
 
 export default function RootLayout({ children }) {
