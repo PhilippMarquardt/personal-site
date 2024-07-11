@@ -260,7 +260,17 @@ const papers = [
     year: 2024,
     link: 'https://doi.org/10.1007/s00105-024-05326-7',
     description: 'Benefits of participatory involvement of patients in the development of a dermatological treatment app—A report from the practice'
+  },
+  {
+    id: 6,
+    title: 'Complement Convertases in Glomerulonephritis: An Explainable Artificial Intelligence-Assisted Renal Biopsy Study',
+    authors: 'Wiech, Thorsten; de las Mercedes Noriega, Maria; Schmidt, Tilman; Wulf, Sonia; Koch, Timo; Marquardt, Philipp; Biniaminov, Sergey; Hoxha, Elion; Tomas, Nicola M.; Huber, Tobias B.; Zipfel, Peter F.',
+    journal: 'Journal of the American Society of Nephrology',
+    year: 2021,
+    link: 'https://journals.lww.com/jasn/citation/2021/10001/complement_convertases_in_glomerulonephritis__an.120.aspx',
+    description: 'An AI-assisted study on complement convertases in glomerulonephritis using renal biopsies.'
   }
+];
 ];
 
 const ProjectsSection = ({ isDarkMode }) => {
