@@ -268,10 +268,10 @@ const papers = [
     journal: 'Journal of the American Society of Nephrology',
     year: 2021,
     link: 'https://journals.lww.com/jasn/citation/2021/10001/complement_convertases_in_glomerulonephritis__an.120.aspx',
-    description: 'An AI-assisted study on complement convertases in glomerulonephritis using renal biopsies.'
+    description: 'An AI assisted study on complement convertases in glomerulonephritis using renal biopsies.'
   }
 ];
-];
+
 
 const ProjectsSection = ({ isDarkMode }) => {
   const [selectedCategory, setSelectedCategory] = useState('All');
