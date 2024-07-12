@@ -2,11 +2,13 @@
 
 import { pipeline, env } from "@xenova/transformers";
 
+// Allow the use of local models
 env.allowLocalModels = true;
 env.userBrowserCache = false;
+
 class PipelineSingleton {
     static task = 'text-generation';
-    static model = "./";
+    static model = 'Xenova/gpt2'; // Use the GPT-2 small model
     static instance = null;
 
     static async getInstance(progress_callback = null) {
