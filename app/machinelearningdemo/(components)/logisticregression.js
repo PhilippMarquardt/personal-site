@@ -53,6 +53,31 @@ const LogisticRegressionComponent = ({ isDarkMode }) => {
     console.log("Regression calculated:", newRegression);
   }, [data]);
 
+  const getIntersectionPoints = (slope, intercept, xMin, xMax, yMin, yMax) => {
+    const points = [];
+
+    const yAtXMin = slope * xMin + intercept;
+    const yAtXMax = slope * xMax + intercept;
+    const xAtYMin = (yMin - intercept) / slope;
+    const xAtYMax = (yMax - intercept) / slope;
+
+    if (yAtXMin >= yMin && yAtXMin <= yMax) {
+      points.push({ x: xMin, y: yAtXMin });
+    }
+    if (yAtXMax >= yMin && yAtXMax <= yMax) {
+      points.push({ x: xMax, y: yAtXMax });
+    }
+    if (xAtYMin >= xMin && xAtYMin <= xMax) {
+      points.push({ x: xAtYMin, y: yMin });
+    }
+    if (xAtYMax >= xMin && xAtYMax <= xMax) {
+      points.push({ x: xAtYMax, y: yMax });
+    }
+
+    // Return only the two boundary points
+    return points.slice(0, 2);
+  };
+
   const decisionBoundary = useMemo(() => {
     if (!regression) return null;
     const { theta0, theta1 } = regression;
@@ -64,23 +89,7 @@ const LogisticRegressionComponent = ({ isDarkMode }) => {
     const intercept = -theta0 / theta1;
     console.log("Decision Boundary: slope =", slope, "intercept =", intercept);
 
-    const xMin = 0;
-    const xMax = 10;
-    const yMin = intercept;
-    const yMax = intercept + slope * xMax;
-
-    const clippedYMin = Math.max(0, Math.min(10, yMin));
-    const clippedYMax = Math.max(0, Math.min(10, yMax));
-
-    const clippedXMin = yMin < 0 ? (0 - intercept) / slope : xMin;
-    const clippedXMax = yMax > 10 ? (10 - intercept) / slope : xMax;
-
-    return {
-      x1: clippedXMin,
-      y1: clippedYMin,
-      x2: clippedXMax,
-      y2: clippedYMax
-    };
+    return getIntersectionPoints(slope, intercept, 0, 10, 0, 10);
   }, [regression]);
 
   return (
@@ -117,12 +126,9 @@ const LogisticRegressionComponent = ({ isDarkMode }) => {
             <Tooltip cursor={{ strokeDasharray: '3 3' }} />
             <Scatter name="Category 0" data={data.filter(d => d.category === 0)} fill="#8884d8" />
             <Scatter name="Category 1" data={data.filter(d => d.category === 1)} fill="#82ca9d" />
-            {showRegression && decisionBoundary && (
+            {showRegression && decisionBoundary && decisionBoundary.length === 2 && (
               <ReferenceLine
-                segment={[
-                  { x: decisionBoundary.x1, y: decisionBoundary.y1 },
-                  { x: decisionBoundary.x2, y: decisionBoundary.y2 }
-                ]}
+                segment={decisionBoundary}
                 stroke="red"
                 strokeWidth={2}
               />

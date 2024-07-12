@@ -1,21 +1,22 @@
 import React, { useState, useCallback, useMemo } from 'react';
+import { Tree } from 'react-d3-tree';
 
-const generateRandomData = (n = 100) => {
-  return Array.from({ length: n }, () => ({
-    x: Math.random() * 10,
-    y: Math.random() * 10,
-    category: Math.random() > 0.5 ? 1 : 0
+const generateRandomDataset = () => {
+  const numDatapoints = Math.floor(Math.random() * 11) + 20; // 20-30 datapoints
+  return Array.from({ length: numDatapoints }, () => ({
+    feature1: Math.random(),
+    feature2: Math.random(),
+    label: Math.random() > 0.5 ? 1 : 0,
   }));
 };
 
-const calculateGiniImpurity = (data) => {
-  const total = data.length;
-  if (total === 0) return 0;
-  const classCounts = data.reduce((acc, d) => {
-    acc[d.category] = (acc[d.category] || 0) + 1;
+const calculateGini = (data) => {
+  const counts = data.reduce((acc, d) => {
+    acc[d.label] = (acc[d.label] || 0) + 1;
     return acc;
   }, {});
-  return 1 - Object.values(classCounts).reduce((sum, count) => sum + Math.pow(count / total, 2), 0);
+  const total = data.length;
+  return 1 - Object.values(counts).reduce((sum, count) => sum + (count / total) ** 2, 0);
 };
 
 const findBestSplit = (data, features) => {
@@ -23,131 +24,165 @@ const findBestSplit = (data, features) => {
   let bestFeature = null;
   let bestThreshold = null;
 
-  features.forEach(feature => {
+  for (const feature of features) {
     const values = data.map(d => d[feature]).sort((a, b) => a - b);
-    for (let i = 0; i < values.length - 1; i++) {
-      const threshold = (values[i] + values[i + 1]) / 2;
+    const thresholds = values.slice(0, -1).map((v, i) => (v + values[i + 1]) / 2);
+
+    for (const threshold of thresholds) {
       const left = data.filter(d => d[feature] <= threshold);
       const right = data.filter(d => d[feature] > threshold);
-      const gini = (left.length / data.length) * calculateGiniImpurity(left) +
-                   (right.length / data.length) * calculateGiniImpurity(right);
+      const gini = (left.length / data.length) * calculateGini(left) +
+                   (right.length / data.length) * calculateGini(right);
+
       if (gini < bestGini) {
         bestGini = gini;
         bestFeature = feature;
         bestThreshold = threshold;
       }
     }
-  });
+  }
 
   return { feature: bestFeature, threshold: bestThreshold, gini: bestGini };
 };
 
-const buildTreeStep = (node, depth = 0) => {
-  if (depth >= 3 || node.data.length <= 5 || calculateGiniImpurity(node.data) === 0) {
-    node.leaf = true;
-    node.prediction = node.data.reduce((sum, d) => sum + d.category, 0) / node.data.length > 0.5 ? 1 : 0;
-    return;
+const buildTree = (data, features, depth = 0, maxDepth = 3) => {
+  const gini = calculateGini(data);
+  if (depth === maxDepth || data.length <= 1 || gini === 0) {
+    const classes = data.reduce((acc, d) => {
+      acc[d.label] = (acc[d.label] || 0) + 1;
+      return acc;
+    }, {});
+    const majorityClass = Object.entries(classes).reduce((a, b) => b[1] > a[1] ? b : a)[0];
+    return { 
+      name: `Leaf (Gini: ${gini.toFixed(2)})`,
+      gini,
+      isLeaf: true,
+      class: majorityClass,
+      classDistribution: Object.entries(classes).map(([k, v]) => `${k}: ${v}`).join(', ')
+    };
   }
 
-  const split = findBestSplit(node.data, ['x', 'y']);
-  node.split = split;
-  node.left = { data: node.data.filter(d => d[split.feature] <= split.threshold) };
-  node.right = { data: node.data.filter(d => d[split.feature] > split.threshold) };
+  const { feature, threshold, gini: splitGini } = findBestSplit(data, features);
+  const left = data.filter(d => d[feature] <= threshold);
+  const right = data.filter(d => d[feature] > threshold);
+
+  return {
+    name: `${feature} <= ${threshold.toFixed(2)}`,
+    gini,
+    children: [
+      buildTree(left, features, depth + 1, maxDepth),
+      buildTree(right, features, depth + 1, maxDepth),
+    ],
+  };
 };
 
 const DecisionTreeVisualization = ({ isDarkMode }) => {
-  const [data] = useState(() => generateRandomData());
+  const [dataset, setDataset] = useState(generateRandomDataset());
   const [currentStep, setCurrentStep] = useState(0);
-  const [tree, setTree] = useState({ data });
 
-  const buildTree = useCallback(() => {
-    const newTree = { ...tree };
-    let node = newTree;
-    for (let i = 0; i < currentStep; i++) {
-      if (node.left) node = node.left;
-    }
-    buildTreeStep(node);
-    setTree(newTree);
-  }, [currentStep, tree]);
+  const regenerateDataset = useCallback(() => {
+    setDataset(generateRandomDataset());
+    setCurrentStep(0);
+  }, []);
 
-  useMemo(() => {
-    buildTree();
-  }, [buildTree, currentStep]);
+  const tree = useMemo(() => buildTree(dataset, ['feature1', 'feature2']), [dataset]);
 
-  const handleForward = () => {
-    setCurrentStep(prev => prev + 1);
-  };
+  const stepTree = useCallback((node, step) => {
+    if (step === 0) return { name: 'Root', gini: calculateGini(dataset) };
+    if (!node.children) return node;
 
-  const handleBackward = () => {
-    setCurrentStep(prev => Math.max(0, prev - 1));
-  };
+    return {
+      ...node,
+      children: node.children.map(child => 
+        step > 1 ? stepTree(child, step - 1) : { name: '...', gini: child.gini }
+      ),
+    };
+  }, [dataset]);
 
-  const renderNode = (node, x, y, width, depth = 0) => {
-    if (!node) return null;
+  const currentTree = useMemo(() => stepTree(tree, currentStep), [tree, currentStep]);
 
-    const nodeRadius = 30;
-    const verticalSpacing = 80;
-
-    return (
-      <g key={`${x}-${y}`}>
-        <circle cx={x} cy={y} r={nodeRadius} fill={isDarkMode ? "#4B5563" : "#E5E7EB"} />
-        <text x={x} y={y} textAnchor="middle" dominantBaseline="middle" fill={isDarkMode ? "white" : "black"}>
-          {node.leaf ? `P: ${node.prediction.toFixed(2)}` : `G: ${node.split.gini.toFixed(2)}`}
-        </text>
-        {node.split && (
-          <>
-            <line x1={x} y1={y + nodeRadius} x2={x - width / 4} y2={y + verticalSpacing - nodeRadius} 
-                  stroke={isDarkMode ? "white" : "black"} />
-            <line x1={x} y1={y + nodeRadius} x2={x + width / 4} y2={y + verticalSpacing - nodeRadius} 
-                  stroke={isDarkMode ? "white" : "black"} />
-            <text x={x - width / 8} y={y + verticalSpacing / 2} textAnchor="middle" fill={isDarkMode ? "white" : "black"}>
-              {`${node.split.feature} ≤ ${node.split.threshold.toFixed(2)}`}
-            </text>
-            <text x={x + width / 8} y={y + verticalSpacing / 2} textAnchor="middle" fill={isDarkMode ? "white" : "black"}>
-              {`${node.split.feature} > ${node.split.threshold.toFixed(2)}`}
-            </text>
-            {depth < currentStep && (
-              <>
-                {renderNode(node.left, x - width / 4, y + verticalSpacing, width / 2, depth + 1)}
-                {renderNode(node.right, x + width / 4, y + verticalSpacing, width / 2, depth + 1)}
-              </>
-            )}
-          </>
-        )}
-      </g>
-    );
-  };
+  const maxSteps = useMemo(() => {
+    let max = 0;
+    const countSteps = (node) => {
+      if (!node.children) return 1;
+      return 1 + Math.max(...node.children.map(countSteps));
+    };
+    return countSteps(tree);
+  }, [tree]);
 
   return (
-    <div className={`p-4 rounded-lg ${isDarkMode ? 'bg-gray-800 text-white' : 'bg-white text-black'}`}>
-      <h2 className="text-2xl font-bold mb-4">Decision Tree Visualization</h2>
-      <p className="mb-4">
-        This visualization shows the step-by-step building of a decision tree. 
-        Each node displays the Gini impurity (G) or the prediction probability (P) for leaf nodes.
-      </p>
-      <div className="flex justify-center space-x-4 mb-4">
-        <button
-          onClick={handleBackward}
-          disabled={currentStep === 0}
-          className={`px-4 py-2 rounded-full transition-colors ${
-            isDarkMode ? 'bg-blue-600 hover:bg-blue-700 text-white' : 'bg-blue-500 hover:bg-blue-600 text-white'
-          } ${currentStep === 0 ? 'opacity-50 cursor-not-allowed' : ''}`}
+    <div className={`p-4 rounded-lg ${isDarkMode ? 'bg-gray-800 text-white' : 'bg-white text-gray-900'}`}>
+      <div className="mb-4 flex justify-between items-center">
+        <button 
+          onClick={regenerateDataset}
+          className={`px-4 py-2 rounded ${isDarkMode ? 'bg-blue-600 hover:bg-blue-700' : 'bg-blue-500 hover:bg-blue-600'} text-white transition-colors`}
         >
-          Previous Step
+          Regenerate Dataset
         </button>
-        <button
-          onClick={handleForward}
-          className={`px-4 py-2 rounded-full transition-colors ${
-            isDarkMode ? 'bg-blue-600 hover:bg-blue-700 text-white' : 'bg-blue-500 hover:bg-blue-600 text-white'
-          }`}
-        >
-          Next Step
-        </button>
+        <div>
+          <button 
+            onClick={() => setCurrentStep(Math.max(0, currentStep - 1))}
+            disabled={currentStep === 0}
+            className={`px-4 py-2 rounded ${isDarkMode ? 'bg-gray-700 hover:bg-gray-600' : 'bg-gray-200 hover:bg-gray-300'} ${isDarkMode ? 'text-white' : 'text-gray-800'} transition-colors disabled:opacity-50 disabled:cursor-not-allowed mr-2`}
+          >
+            Back
+          </button>
+          <button 
+            onClick={() => setCurrentStep(Math.min(maxSteps, currentStep + 1))}
+            disabled={currentStep === maxSteps}
+            className={`px-4 py-2 rounded ${isDarkMode ? 'bg-gray-700 hover:bg-gray-600' : 'bg-gray-200 hover:bg-gray-300'} ${isDarkMode ? 'text-white' : 'text-gray-800'} transition-colors disabled:opacity-50 disabled:cursor-not-allowed`}
+          >
+            Forward
+          </button>
+        </div>
       </div>
-      <div className="w-full h-96 overflow-auto">
-        <svg width="800" height="400" viewBox="0 0 800 400">
-          {renderNode(tree, 400, 50, 700)}
-        </svg>
+      <div className={`mb-4 p-4 rounded ${isDarkMode ? 'bg-gray-700' : 'bg-gray-100'}`}>
+        <h3 className="font-semibold mb-2">Dataset Info</h3>
+        <p>Number of datapoints: {dataset.length}</p>
+      </div>
+      <div style={{ width: '100%', height: '60vh', minHeight: '400px' }}>
+        <Tree 
+          data={currentTree}
+          orientation="vertical"
+          pathFunc="step"
+          translate={{ x: 400, y: 50 }}
+          nodeSize={{ x: 300, y: 150 }}
+          separation={{ siblings: 2, nonSiblings: 2 }}
+          renderCustomNodeElement={(rd3tProps) => (
+            <g>
+              <circle r="30" fill={isDarkMode ? "#4B5563" : "#60A5FA"} />
+              <text 
+                dy="0.31em"
+                fontSize={12}
+                fontFamily="Arial"
+                textAnchor="middle"
+                style={{ fill: isDarkMode ? 'white' : 'black' }}
+              >
+                {rd3tProps.nodeDatum.name}
+              </text>
+              <text 
+                dy="1.5em"
+                fontSize={12}
+                fontFamily="Arial"
+                textAnchor="middle"
+                style={{ fill: isDarkMode ? 'white' : 'black' }}
+              >
+                Gini: {rd3tProps.nodeDatum.gini.toFixed(2)}
+              </text>
+              {rd3tProps.nodeDatum.isLeaf && (
+                <text 
+                  dy="2.7em"
+                  fontSize={10}
+                  fontFamily="Arial"
+                  textAnchor="middle"
+                  style={{ fill: isDarkMode ? 'white' : 'black' }}
+                >
+                  Class: {rd3tProps.nodeDatum.class}
+                </text>
+              )}
+            </g>
+          )}
+        />
       </div>
     </div>
   );

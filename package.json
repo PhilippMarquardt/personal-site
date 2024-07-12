@@ -9,8 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@shadcn/ui": "^0.0.4",
     "@tailwindcss/typography": "^0.5.13",
     "@vercel/speed-insights": "^1.0.12",
+    "framer-motion": "^11.3.2",
     "gray-matter": "^4.0.3",
     "highlight.js": "^11.10.0",
     "katex": "^0.16.11",
@@ -19,6 +21,7 @@
     "next-mdx-remote": "^5.0.0",
     "prismjs": "^1.29.0",
     "react": "^18",
+    "react-d3-tree": "^3.6.2",
     "react-dom": "^18",
     "recharts": "^2.12.7",
     "rehype-highlight": "^7.0.0",

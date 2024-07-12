@@ -6,7 +6,9 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContai
 import LinearRegressionComponent from './(components)/linearregression'
 import LogisticRegressionComponent from './(components)/logisticregression';
 import SVMComponent from './(components)/svm';
-
+import DecisionTreeVisualization from './(components)/decisiontree';
+import LassoRidgeRegression from './(components)/lassoridge';
+import SelfAttentionVisualization from './(components)/attention';
 const sections = [
     {
       id: 'linearRegression',
@@ -22,6 +24,21 @@ const sections = [
         id: 'svm',
         title: 'svm Regression',
         Component: SVMComponent,
+      },
+      {
+        id: 'dt',
+        title: 'dt',
+        Component: DecisionTreeVisualization,
+      },
+      {
+        id: 'lr',
+        title: 'lr',
+        Component: LassoRidgeRegression,
+      },
+      {
+        id: 'sa',
+        title: 'sa',
+        Component: SelfAttentionVisualization,
       },
 
     // Add more sections here as needed

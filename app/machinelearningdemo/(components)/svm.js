@@ -8,7 +8,7 @@ const generateRandomData = () => {
     return {
       x,
       y,
-      category: y > x + Math.random() * 2 - 1 ? 1 : -1
+      category: y > x + 2 * (Math.random() * 2 - 1) ? 1 : -1 // Increased separation
     };
   });
 };
@@ -57,6 +57,39 @@ const SVMComponent = ({ isDarkMode }) => {
     setShowSVM(true);
   }, [data]);
 
+  const getIntersectionPoints = (slope, intercept, xMin, xMax, yMin, yMax) => {
+    const points = [];
+
+    const yAtXMin = slope * xMin + intercept;
+    const yAtXMax = slope * xMax + intercept;
+    const xAtYMin = (yMin - intercept) / slope;
+    const xAtYMax = (yMax - intercept) / slope;
+
+    if (yAtXMin >= yMin && yAtXMin <= yMax) {
+      points.push({ x: xMin, y: yAtXMin });
+    }
+    if (yAtXMax >= yMin && yAtXMax <= yMax) {
+      points.push({ x: xMax, y: yAtXMax });
+    }
+    if (xAtYMin >= xMin && xAtYMin <= xMax) {
+      points.push({ x: xAtYMin, y: yMin });
+    }
+    if (xAtYMax >= xMin && xAtYMax <= xMax) {
+      points.push({ x: xAtYMax, y: yMax });
+    }
+
+    // Return only the two boundary points
+    return points.slice(0, 2);
+  };
+
+  const getClippedLine = (slope, intercept, marginOffset = 0) => {
+    const xMin = 0;
+    const xMax = 10;
+    const yMin = 0;
+    const yMax = 10;
+    return getIntersectionPoints(slope, intercept + marginOffset, xMin, xMax, yMin, yMax);
+  };
+
   const svmVisualization = useMemo(() => {
     if (!svm) return { decisionBoundary: [], margins: [], supportVectors: [] };
 
@@ -65,36 +98,9 @@ const SVMComponent = ({ isDarkMode }) => {
     const intercept = -b / w[1];
     const margin = 1 / Math.sqrt(w[0] ** 2 + w[1] ** 2);
 
-    // Function to clip lines within the chart bounds
-    const clipLine = (x1, y1, x2, y2) => {
-      const xMin = 0;
-      const xMax = 10;
-      const yMin = 0;
-      const yMax = 10;
-
-      if (y1 < yMin) {
-        x1 = (yMin - intercept) / slope;
-        y1 = yMin;
-      }
-      if (y1 > yMax) {
-        x1 = (yMax - intercept) / slope;
-        y1 = yMax;
-      }
-      if (y2 < yMin) {
-        x2 = (yMin - intercept) / slope;
-        y2 = yMin;
-      }
-      if (y2 > yMax) {
-        x2 = (yMax - intercept) / slope;
-        y2 = yMax;
-      }
-
-      return [{ x: x1, y: y1 }, { x: x2, y: y2 }];
-    };
-
-    const decisionBoundary = clipLine(0, intercept, 10, 10 * slope + intercept);
-    const margin1 = clipLine(0, intercept + margin * Math.sqrt(1 + slope ** 2), 10, 10 * slope + intercept + margin * Math.sqrt(1 + slope ** 2));
-    const margin2 = clipLine(0, intercept - margin * Math.sqrt(1 + slope ** 2), 10, 10 * slope + intercept - margin * Math.sqrt(1 + slope ** 2));
+    const decisionBoundary = getClippedLine(slope, intercept);
+    const margin1 = getClippedLine(slope, intercept, margin);
+    const margin2 = getClippedLine(slope, intercept, -margin);
 
     const supportVectors = data.filter(point => {
       const distance = Math.abs(w[0] * point.x + w[1] * point.y + b) / Math.sqrt(w[0] ** 2 + w[1] ** 2);
