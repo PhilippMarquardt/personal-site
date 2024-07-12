@@ -3,7 +3,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next"
 import "./globals.css";
 import 'katex/dist/katex.min.css'
 import 'highlight.js/styles/github.css';
-import Head from 'next/head';
+
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,10 +18,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        {children}
-        <SpeedInsights />
-      </body>
+      <body className={inter.className}>{children}<SpeedInsights /></body>
     </html>
   );
 }
