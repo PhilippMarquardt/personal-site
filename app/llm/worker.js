@@ -25,7 +25,7 @@ self.addEventListener('message', async (event) => {
     });
 
     let output = await generator(event.data.text, {
-        max_new_tokens: 50,
+        max_new_tokens: 150,
         temperature: 0.7,
     });
 
