@@ -18,7 +18,7 @@ const sigmoid = (z) => 1 / (1 + Math.exp(-z));
 const calculateLogisticRegression = (data) => {
   let theta0 = 0, theta1 = 0;
   const learningRate = 0.1;
-  const iterations = 1000;
+  const iterations = 10000; // Increased number of iterations
 
   for (let i = 0; i < iterations; i++) {
     let gradient0 = 0, gradient1 = 0;
@@ -56,11 +56,31 @@ const LogisticRegressionComponent = ({ isDarkMode }) => {
   const decisionBoundary = useMemo(() => {
     if (!regression) return null;
     const { theta0, theta1 } = regression;
-    // y = -(theta0 + theta1 * x) / theta1
+    if (theta1 === 0) {
+      console.error("theta1 is zero, invalid decision boundary");
+      return null;
+    }
     const slope = -theta1;
     const intercept = -theta0 / theta1;
     console.log("Decision Boundary: slope =", slope, "intercept =", intercept);
-    return { slope, intercept };
+
+    const xMin = 0;
+    const xMax = 10;
+    const yMin = intercept;
+    const yMax = intercept + slope * xMax;
+
+    const clippedYMin = Math.max(0, Math.min(10, yMin));
+    const clippedYMax = Math.max(0, Math.min(10, yMax));
+
+    const clippedXMin = yMin < 0 ? (0 - intercept) / slope : xMin;
+    const clippedXMax = yMax > 10 ? (10 - intercept) / slope : xMax;
+
+    return {
+      x1: clippedXMin,
+      y1: clippedYMin,
+      x2: clippedXMax,
+      y2: clippedYMax
+    };
   }, [regression]);
 
   return (
@@ -99,7 +119,10 @@ const LogisticRegressionComponent = ({ isDarkMode }) => {
             <Scatter name="Category 1" data={data.filter(d => d.category === 1)} fill="#82ca9d" />
             {showRegression && decisionBoundary && (
               <ReferenceLine
-                segment={[{ x: 0, y: decisionBoundary.intercept }, { x: 10, y: 10 * decisionBoundary.slope + decisionBoundary.intercept }]}
+                segment={[
+                  { x: decisionBoundary.x1, y: decisionBoundary.y1 },
+                  { x: decisionBoundary.x2, y: decisionBoundary.y2 }
+                ]}
                 stroke="red"
                 strokeWidth={2}
               />
