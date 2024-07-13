@@ -129,6 +129,15 @@ const projects = [
     page: "llm",
     description: 'A small project that trains a custom llm and deploys it in the browser'
   },
+  { 
+    id: 8, 
+    title: 'Mulitmodal Emotion Detection', 
+    category: 'ML', 
+    image: 'https://github.com/PhilippMarquardt/personal-site/blob/main/public/emotion.png?raw=true', 
+    github: 'https://github.com/PhilippMarquardt/Machine-Learning-Trainer', 
+    page: "llm",
+    description: 'A project that uses the RAVDESS Audio and Video dataset to train multimodal models that can detect emotion'
+  },
 ];
 
 const papers = [
