@@ -125,7 +125,7 @@ const projects = [
     title: 'Training and deploying a custom LLM', 
     category: 'ML', 
     image: 'https://github.com/PhilippMarquardt/personal-site/blob/main/public/llm.png?raw=true', 
-    github: 'https://github.com/PhilippMarquardt/Machine-Learning-Trainer', 
+    github: 'https://github.com/PhilippMarquardt/train-deploy-llm', 
     page: "llm",
     description: 'A small project that trains a custom llm and deploys it in the browser'
   },
@@ -134,10 +134,20 @@ const projects = [
     title: 'Mulitmodal Emotion Detection', 
     category: 'ML', 
     image: 'https://github.com/PhilippMarquardt/personal-site/blob/main/public/emotion.png?raw=true', 
-    github: 'https://github.com/PhilippMarquardt/Machine-Learning-Trainer', 
+    github: 'https://github.com/PhilippMarquardt/multimodal-emotion-detection', 
     page: "llm",
     description: 'A project that uses the RAVDESS Audio and Video dataset to train multimodal models that can detect emotion'
   },
+  { 
+    id: 8, 
+    title: 'MMWrapper', 
+    category: 'ML', 
+    image: 'https://github.com/PhilippMarquardt/personal-site/blob/main/public/emotion.png?raw=true', 
+    github: 'https://github.com/PhilippMarquardt/MMWrapper', 
+    page: "llm",
+    description: 'A wrapper around the ecosytem of OpenMMLab to easily train models using an easy to use config'
+  },
+
 ];
 
 const papers = [
