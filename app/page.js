@@ -120,6 +120,15 @@ const projects = [
     blogSlug: 'linear-algebra-visualizer',
     description: 'A simple C#/WPF application do define a custom deep learning architecture. Was extended to include a simple annotation tool for standard image formats.'
   },
+  { 
+    id: 7, 
+    title: 'Training and deploying a custom LLM', 
+    category: 'ML', 
+    image: 'https://github.com/PhilippMarquardt/personal-site/blob/main/public/llm.png?raw=true', 
+    github: 'https://github.com/PhilippMarquardt/Machine-Learning-Trainer', 
+    page: "llm",
+    description: 'A small project that trains a custom llm and deploys it in the browser'
+  },
 ];
 
 const papers = [
