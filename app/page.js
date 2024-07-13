@@ -139,10 +139,10 @@ const projects = [
     description: 'A project that uses the RAVDESS Audio and Video dataset to train multimodal models that can detect emotion'
   },
   { 
-    id: 8, 
+    id: 9, 
     title: 'MMWrapper', 
     category: 'ML', 
-    image: 'https://github.com/PhilippMarquardt/personal-site/blob/main/public/emotion.png?raw=true', 
+    image: 'https://github.com/PhilippMarquardt/personal-site/blob/main/public/mmwrapper.png?raw=true', 
     github: 'https://github.com/PhilippMarquardt/MMWrapper', 
     page: "llm",
     description: 'A wrapper around the ecosytem of OpenMMLab to easily train models using an easy to use config'
