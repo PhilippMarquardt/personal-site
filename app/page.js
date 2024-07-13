@@ -96,7 +96,7 @@ const projects = [
     id: 4, 
     title: 'Machine Learning Basic Concepts Implementation and Visualization', 
     category: 'ML', 
-    image: 'https://www.microsoft.com/en-us/research/uploads/prod/2023/03/AI_Microsoft_Research_Header_1920x720.png', 
+    image: 'https://github.com/PhilippMarquardt/personal-site/blob/main/public/mlconcept.png?raw=true', 
     github: 'https://github.com/yourusername/decision-trees', 
 
     page: 'machinelearningdemo',
