@@ -147,7 +147,7 @@ const papers = [
     authors: 'Emily Brown, David Lee',
     journal: 'IEEE Robotics and Automation Letters',
     year: 2021,
-    link: 'https://pubmed.ncbi.nlm.nih.gov/35408876/',
+    link: 'https://www.mdpi.com/1422-0067/23/7/3515',
     description: 'Resemblance-Ranking Peptide Library to Screen for Binders to Antibodies on a Peptidomic Scale'
   },
   {
@@ -521,30 +521,32 @@ const LandingPage = () => {
   return (
     <div className={`min-h-screen ${currentColors.background} ${currentColors.text}`}>
       <nav className={`fixed top-0 left-0 right-0 z-50 ${currentColors.navBackground} shadow-md`}>
-        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <h1 className="text-2xl font-bold">Philipp Marquardt</h1>
-          <div className="hidden md:flex space-x-4">
-            <a onClick={() => scrollToSection('about')} className="cursor-pointer hover:text-blue-500 transition-colors">About</a>
-            <a onClick={() => scrollToSection('journey')} className="cursor-pointer hover:text-blue-500 transition-colors">CV</a>
-            <a onClick={() => scrollToSection('skills')} className="cursor-pointer hover:text-blue-500 transition-colors">Professional Work</a>
-            <a onClick={() => scrollToSection('research-projects')} className="cursor-pointer hover:text-blue-500 transition-colors">Funded Projects</a>
-            <a onClick={() => scrollToSection('projects')} className="cursor-pointer hover:text-blue-500 transition-colors">Projects</a>
-            <a onClick={() => scrollToSection('papers')} className="cursor-pointer hover:text-blue-500 transition-colors">Papers</a>
-            <a onClick={() => scrollToSection('courses')} className="cursor-pointer hover:text-blue-500 transition-colors">Masters Degree</a>
+        <div className="container mx-auto px-4 py-4 relative">
+          <div className="flex items-center justify-between">
+            <h1 className="text-2xl font-bold">Philipp Marquardt</h1>
+            <div className="flex items-center">
+              <button
+                onClick={() => setIsDarkMode(!isDarkMode)}
+                className={`p-2 rounded-full ${currentColors.hoverBackground} transition-colors`}
+              >
+                {isDarkMode ? <Sun size={24} /> : <Moon size={24} />}
+              </button>
+              <button
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                className={`md:hidden ml-4 p-2 rounded-full ${currentColors.hoverBackground} transition-colors`}
+              >
+                {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              </button>
+            </div>
           </div>
-          <div className="flex items-center space-x-4">
-            <button
-              onClick={() => setIsDarkMode(!isDarkMode)}
-              className={`p-2 rounded-full ${currentColors.hoverBackground} transition-colors`}
-            >
-              {isDarkMode ? <Sun size={24} /> : <Moon size={24} />}
-            </button>
-            <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className={`md:hidden p-2 rounded-full ${currentColors.hoverBackground} transition-colors`}
-            >
-              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
+          <div className="hidden md:flex items-center justify-center absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
+            <a onClick={() => scrollToSection('about')} className="mx-3 cursor-pointer hover:text-blue-500 transition-colors">About</a>
+            <a onClick={() => scrollToSection('journey')} className="mx-3 cursor-pointer hover:text-blue-500 transition-colors">CV</a>
+            <a onClick={() => scrollToSection('skills')} className="mx-3 cursor-pointer hover:text-blue-500 transition-colors">Professional Work</a>
+            <a onClick={() => scrollToSection('research-projects')} className="mx-3 cursor-pointer hover:text-blue-500 transition-colors">Funded Projects</a>
+            <a onClick={() => scrollToSection('projects')} className="mx-3 cursor-pointer hover:text-blue-500 transition-colors">Projects</a>
+            <a onClick={() => scrollToSection('papers')} className="mx-3 cursor-pointer hover:text-blue-500 transition-colors">Papers</a>
+            <a onClick={() => scrollToSection('courses')} className="mx-3 cursor-pointer hover:text-blue-500 transition-colors">Masters Degree</a>
           </div>
         </div>
         {isMenuOpen && (
