@@ -147,6 +147,15 @@ const projects = [
     page: "llm",
     description: 'A wrapper around the ecosytem of OpenMMLab to easily train models using an easy to use config'
   },
+  { 
+    id: 0, 
+    title: 'llm-sft-rm-rlhf', 
+    category: 'ML', 
+    image: 'https://github.com/PhilippMarquardt/personal-site/blob/main/public/llmtwo.png?raw=true', 
+    github: 'https://github.com/PhilippMarquardt/llm-sft-rm-rlhf', 
+    page: 'llm-sft-rm-rlhf',
+    description: 'Guide a large language model to generate human-likable content in 3 steps: SFT, Reward Model Training, and RLHF.'
+  },
 
 ];
 
