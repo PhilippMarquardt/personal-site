@@ -5,7 +5,8 @@ const SelfAttentionVisualization = ({ isDarkMode }) => {
   const [input, setInput] = useState("The cat sat");
   const [currentStep, setCurrentStep] = useState(0);
   const [calculationStep, setCalculationStep] = useState(0);
-  const tokens = input.split(" ");
+  const [pairIndex, setPairIndex] = useState([0, 0]);
+  const tokens = useMemo(() => input.split(" "), [input]);
 
   const steps = [
     { name: "Tokenization", description: "Convert input text to tokens" },
@@ -43,6 +44,7 @@ const SelfAttentionVisualization = ({ isDarkMode }) => {
     setInput(e.target.value);
     setCurrentStep(0);
     setCalculationStep(0);
+    setPairIndex([0, 0]);
   };
 
   const renderVector = (vector, color) => (
@@ -62,8 +64,9 @@ const SelfAttentionVisualization = ({ isDarkMode }) => {
   );
 
   const renderAttentionCalculation = () => {
-    const query = dummyVectors[0];
-    const key = dummyVectors[1];
+    const [i, j] = pairIndex;
+    const query = dummyVectors[i];
+    const key = dummyVectors[j];
     const dotProduct = query.reduce((sum, q, idx) => sum + parseFloat(q) * parseFloat(key[idx]), 0);
     const scale = Math.sqrt(query.length);
     const attentionScore = dotProduct / scale;
@@ -72,11 +75,11 @@ const SelfAttentionVisualization = ({ isDarkMode }) => {
       { name: "Select Vectors", render: () => (
         <div className="flex space-x-4">
           <div>
-            <p>Query (Q)</p>
+            <p>Query (Q) from "{tokens[i]}"</p>
             {renderVector(query, isDarkMode ? 'bg-red-500' : 'bg-red-300')}
           </div>
           <div>
-            <p>Key (K)</p>
+            <p>Key (K) from "{tokens[j]}"</p>
             {renderVector(key, isDarkMode ? 'bg-green-500' : 'bg-green-300')}
           </div>
         </div>
@@ -209,7 +212,27 @@ const SelfAttentionVisualization = ({ isDarkMode }) => {
           </motion.div>
         );
       case 3:
-        return renderAttentionCalculation();
+        return (
+          <div>
+            {renderAttentionCalculation()}
+            <div className="mt-4">
+              <button
+                onClick={() => setPairIndex([pairIndex[0], pairIndex[1] + 1])}
+                disabled={pairIndex[1] >= tokens.length - 1}
+                className={`px-4 py-2 mr-2 rounded ${isDarkMode ? 'bg-blue-600 hover:bg-blue-700' : 'bg-blue-500 hover:bg-blue-600'} text-white transition-colors`}
+              >
+                Next Pair
+              </button>
+              <button
+                onClick={() => setPairIndex([pairIndex[0], pairIndex[1] - 1])}
+                disabled={pairIndex[1] <= 0}
+                className={`px-4 py-2 rounded ${isDarkMode ? 'bg-blue-600 hover:bg-blue-700' : 'bg-blue-500 hover:bg-blue-600'} text-white transition-colors`}
+              >
+                Previous Pair
+              </button>
+            </div>
+          </div>
+        );
       case 4:
         return (
           <motion.div 
@@ -314,6 +337,7 @@ const SelfAttentionVisualization = ({ isDarkMode }) => {
       } else {
         setCurrentStep(currentStep + 1);
         setCalculationStep(0);
+        setPairIndex([pairIndex[0] + 1, 0]);
       }
     } else {
       setCurrentStep(Math.min(steps.length - 1, currentStep + 1));
@@ -327,6 +351,11 @@ const SelfAttentionVisualization = ({ isDarkMode }) => {
       setCurrentStep(Math.max(0, currentStep - 1));
       if (currentStep === 4) {
         setCalculationStep(4);
+      }
+      if (pairIndex[0] > 0) {
+        setPairIndex([pairIndex[0] - 1, tokens.length - 1]);
+      } else {
+        setPairIndex([0, 0]);
       }
     }
   };
@@ -345,7 +374,7 @@ const SelfAttentionVisualization = ({ isDarkMode }) => {
         />
       </div>
       <div className="mb-4">
-      <h3 className="text-xl font-semibold mb-2">
+        <h3 className="text-xl font-semibold mb-2">
           Step {currentStep + 1}: {steps[currentStep].name}
         </h3>
         <p className="mb-4">{steps[currentStep].description}</p>
@@ -356,7 +385,7 @@ const SelfAttentionVisualization = ({ isDarkMode }) => {
       <div className="flex justify-between mt-4">
         <button
           onClick={handlePrevious}
-          disabled={currentStep === 0 && calculationStep === 0}
+          disabled={currentStep === 0 && calculationStep === 0 && pairIndex[0] === 0 && pairIndex[1] === 0}
           className={`px-4 py-2 rounded ${
             isDarkMode ? 'bg-blue-600 hover:bg-blue-700' : 'bg-blue-500 hover:bg-blue-600'
           } text-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed`}
@@ -365,7 +394,7 @@ const SelfAttentionVisualization = ({ isDarkMode }) => {
         </button>
         <button
           onClick={handleNext}
-          disabled={currentStep === steps.length - 1 && calculationStep === 4}
+          disabled={currentStep === steps.length - 1 && calculationStep === 4 && pairIndex[0] >= tokens.length - 1 && pairIndex[1] >= tokens.length - 1}
           className={`px-4 py-2 rounded ${
             isDarkMode ? 'bg-blue-600 hover:bg-blue-700' : 'bg-blue-500 hover:bg-blue-600'
           } text-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed`}

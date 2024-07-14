@@ -135,7 +135,7 @@ const projects = [
     category: 'ML', 
     image: 'https://github.com/PhilippMarquardt/personal-site/blob/main/public/emotion.png?raw=true', 
     github: 'https://github.com/PhilippMarquardt/multimodal-emotion-detection', 
-    page: "llm",
+    blogSlug: "emotion",
     description: 'A project that uses the RAVDESS Audio and Video dataset to train multimodal models that can detect emotion'
   },
   { 

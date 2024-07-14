@@ -9,6 +9,7 @@ import SVMComponent from './(components)/svm';
 import DecisionTreeVisualization from './(components)/decisiontree';
 import LassoRidgeRegression from './(components)/lassoridge';
 import SelfAttentionVisualization from './(components)/attention';
+import BPEVisualization from './(components)/bpe';
 const sections = [
     {
       id: 'linearRegression',
@@ -39,6 +40,11 @@ const sections = [
         id: 'sa',
         title: 'sa',
         Component: SelfAttentionVisualization,
+      },
+      {
+        id: 'bpe',
+        title: 'bpe',
+        Component: BPEVisualization,
       },
 
     // Add more sections here as needed
