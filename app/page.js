@@ -149,7 +149,7 @@ const projects = [
   },
   { 
     id: 0, 
-    title: 'llm-sft-rm-rlhf', 
+    title: 'LLM Supervised Finetuning and Reward Model and RLHF', 
     category: 'ML', 
     image: 'https://github.com/PhilippMarquardt/personal-site/blob/main/public/llmtwo.png?raw=true', 
     github: 'https://github.com/PhilippMarquardt/llm-sft-rm-rlhf', 
