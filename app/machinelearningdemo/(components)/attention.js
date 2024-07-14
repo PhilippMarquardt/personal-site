@@ -75,11 +75,11 @@ const SelfAttentionVisualization = ({ isDarkMode }) => {
       { name: "Select Vectors", render: () => (
         <div className="flex space-x-4">
           <div>
-            <p>Query (Q) from "{tokens[i]}"</p>
+          <p>Query (Q) from &quot;{tokens[i]}&quot;</p>
             {renderVector(query, isDarkMode ? 'bg-red-500' : 'bg-red-300')}
           </div>
           <div>
-            <p>Key (K) from "{tokens[j]}"</p>
+          <p>Key (K) from &quot;{tokens[j]}&quot;</p>
             {renderVector(key, isDarkMode ? 'bg-green-500' : 'bg-green-300')}
           </div>
         </div>
@@ -362,7 +362,7 @@ const SelfAttentionVisualization = ({ isDarkMode }) => {
 
   return (
     <div className={`p-4 rounded-lg ${isDarkMode ? 'bg-gray-800 text-white' : 'bg-white text-gray-900'}`}>
-      <h2 className="text-2xl font-bold mb-4">Self-Attention Mechanism</h2>
+      <h2 className="text-2xl font-bold mb-4">Self Attention Mechanism</h2>
       <div className="mb-4">
         <label htmlFor="input" className="block mb-2">Input Sentence:</label>
         <input
