@@ -66,7 +66,7 @@ const researchProjects = [
 ];
 const projects = [
   { 
-    id: 1, 
+    id: 8, 
     title: 'Time Logging Project', 
     category: 'C#', 
     image: 'https://www.microsoft.com/en-us/research/uploads/prod/2023/03/AI_Microsoft_Research_Header_1920x720.png', 
@@ -75,7 +75,7 @@ const projects = [
     description: 'Time Logging Application to Manage Employees Working Times and Create Monthly Reports. Written in C# WPF'
   },
   { 
-    id: 2, 
+    id: 3, 
     title: 'C# Multiplayer Framework for VR/AR Applications in Unity', 
     category: 'C#', 
     image: 'https://www.microsoft.com/en-us/research/uploads/prod/2023/03/AI_Microsoft_Research_Header_1920x720.png', 
@@ -84,7 +84,7 @@ const projects = [
     description: 'A multiplayer framework written in c# for vr and ar applications. Can be used in Unity to enable TCP and UDP based multiplayer sessions with various features.'
   },
   { 
-    id: 3, 
+    id: 2, 
     title: 'Microscopy Image Viewer', 
     category: 'Full Stack', 
     image: 'https://github.com/PhilippMarquardt/personal-site/blob/main/public/viewer.png?raw=true', 
@@ -103,7 +103,7 @@ const projects = [
     description: 'An implementation of multiple basic machine learning concepts.'
   },
   { 
-    id: 5, 
+    id: 1, 
     title: 'Deep Learning Framework for Training Classification, Segmentation, Object Detection and Instance Segmentation Models', 
     category: 'ML', 
     image: 'https://github.com/PhilippMarquardt/personal-site/blob/main/public/visualdl.png?raw=true', 
@@ -112,7 +112,7 @@ const projects = [
     description: 'Exploration of reinforcement learning algorithms and applications.'
   },
   { 
-    id: 6, 
+    id: 9, 
     title: 'A simple Machine Learning Trainer and Annotation GUI in C#/WPF', 
     category: 'ML', 
     image: 'https://www.microsoft.com/en-us/research/uploads/prod/2023/03/AI_Microsoft_Research_Header_1920x720.png', 
@@ -121,7 +121,7 @@ const projects = [
     description: 'A simple C#/WPF application do define a custom deep learning architecture. Was extended to include a simple annotation tool for standard image formats.'
   },
   { 
-    id: 7, 
+    id: 5, 
     title: 'Training and deploying a custom LLM', 
     category: 'ML', 
     image: 'https://github.com/PhilippMarquardt/personal-site/blob/main/public/llm.png?raw=true', 
@@ -130,7 +130,7 @@ const projects = [
     description: 'A small project that trains a custom llm and deploys it in the browser'
   },
   { 
-    id: 8, 
+    id: 7, 
     title: 'Mulitmodal Emotion Detection', 
     category: 'ML', 
     image: 'https://github.com/PhilippMarquardt/personal-site/blob/main/public/emotion.png?raw=true', 
@@ -139,7 +139,7 @@ const projects = [
     description: 'A project that uses the RAVDESS Audio and Video dataset to train multimodal models that can detect emotion'
   },
   { 
-    id: 9, 
+    id: 6, 
     title: 'MMWrapper', 
     category: 'ML', 
     image: 'https://github.com/PhilippMarquardt/personal-site/blob/main/public/mmwrapper.png?raw=true', 
@@ -372,8 +372,9 @@ const ProjectsSection = ({ colors }) => {
   const [selectedCategory, setSelectedCategory] = useState('All');
 
   const filteredProjects = selectedCategory === 'All'
-    ? projects
-    : projects.filter(project => project.category === selectedCategory);
+  ? projects.sort((a, b) => a.id - b.id)
+  : projects.filter(project => project.category === selectedCategory).sort((a, b) => a.id - b.id);
+
 
   const getCategoryColor = (category) => {
     switch(category) {
