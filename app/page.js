@@ -164,20 +164,21 @@ const papers = [
     id: 1,
     title: 'An Improved Topic Masking Technique for Authorship Analysis',
     authors: 'Oren Halvani, Lukas Graner, Roey Regev, Philipp Marquardt',
-    journal: 'Journal of Medical Imaging',
+    journal: 'arXiv',
     year: 2021,
-    link: 'https://arxiv.org/abs/2005.06605v1',
+    link: 'https://www.researchgate.net/publication/341046337_An_Improved_Topic_Masking_Technique_for_Authorship_Analysis',
     description: 'An Improved Topic Masking Technique for Authorship Analysis'
   },
   {
-    id: 2,
-    title: 'An Unsophisticated Neural Bots and Gender Profiling System',
-    authors: 'Oren Halvani and Philipp Marquardt',
-    journal: '...',
-    year: 2019,
-    link: 'https://ceur-ws.org/Vol-2380/paper_206.pdf',
-    description: 'An Unsophisticated Neural Bots and Gender Profiling System'
+    id: 7,
+    title: 'Using Deep Learning to Distinguish Highly Malignant Uveal Melanoma from Benign Choroidal Nevi',
+    authors: 'Laura Hoffmann, Constance B. Runkel, Steffen Künzel, Payam Kabiri, Anne Rübsam, Theresa Bonaventura, Philipp Marquardt, Valentin Haas, Nathalie Biniaminov, Sergey Biniaminov, Antonia M. Joussen, Oliver Zeitz',
+    journal: 'Journal of Clinical Medicine',
+    year: 2024,
+    link: 'https://doi.org/10.3390/jcm13144141',
+    description: 'This study evaluates deep learning models for distinguishing highly malignant uveal melanoma from benign choroidal nevi based on fundus photographs.'
   },
+  
   {
     id: 3,
     title: 'Resemblance-Ranking Peptide Library to Screen for Binders to Antibodies on a Peptidomic Scale',
@@ -197,6 +198,15 @@ const papers = [
     description: 'Neuromorphic Vision mit Spiking Neural Networks zur Sturzerkennung im betreuten Wohnen'
   },
   {
+    id: 2,
+    title: 'An Unsophisticated Neural Bots and Gender Profiling System',
+    authors: 'Oren Halvani and Philipp Marquardt',
+    journal: 'Conference and Labs of the Evaluation Forum',
+    year: 2019,
+    link: 'https://ceur-ws.org/Vol-2380/paper_206.pdf',
+    description: 'An Unsophisticated Neural Bots and Gender Profiling System'
+  },
+  {
     id: 5,
     title: 'Nutzen der partizipatorischen Mitwirkung von PatientInnen an der Entwicklung einer dermatologischen Therapie-App – ein Bericht aus der Praxis',
     authors: 'Anne Koopmann, Anna Maria Pfeifer, Lara Schweickart, Nathalie Biniaminov, Valentin Haas, Philipp Marquardt, Astrid Gößwein, Christopher Czaban, Sergey Biniaminov, Mara Blauth, Caroline Glatzel, Christoph Zimmermann, Wilhelm Stork, Victor Olsavszky, Astrid Schmieder',
@@ -213,7 +223,8 @@ const papers = [
     year: 2021,
     link: 'https://journals.lww.com/jasn/citation/2021/10001/complement_convertases_in_glomerulonephritis__an.120.aspx',
     description: 'An AI assisted study on complement convertases in glomerulonephritis using renal biopsies.'
-  }
+  },
+  
 ];
 
 const timelineEvents = [
