@@ -13,6 +13,9 @@ export const metadata = {
   verification: {
     google: "53T7bzBWPmqBSicdukWSBp07YmonNWlZbGM1_gZhimQ",
   },
+  openGraph: {
+    site_name: "Philipp Marquardt",
+  },
 };
 
 export default function RootLayout({ children }) {
