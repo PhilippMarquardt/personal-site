@@ -164,7 +164,7 @@ const papers = [
     id: 1,
     title: 'An Improved Topic Masking Technique for Authorship Analysis',
     authors: 'Oren Halvani, Lukas Graner, Roey Regev, Philipp Marquardt',
-    journal: 'arXiv',
+    journal: 'ARES',
     year: 2021,
     link: 'https://www.researchgate.net/publication/341046337_An_Improved_Topic_Masking_Technique_for_Authorship_Analysis',
     description: 'An Improved Topic Masking Technique for Authorship Analysis'
@@ -182,8 +182,8 @@ const papers = [
   {
     id: 3,
     title: 'Resemblance-Ranking Peptide Library to Screen for Binders to Antibodies on a Peptidomic Scale',
-    authors: 'Emily Brown, David Lee',
-    journal: 'IEEE Robotics and Automation Letters',
+    authors: 'Felix Jenne, Sergey Biniaminov, Nathalie Biniaminov, Philipp Marquardt, Clemens von Bojničić-Kninski, Roman Popov, Anja Seckinger, Dirk Hose, Alexander Nesterov-Mueller',
+    journal: 'International Journal of Molecular Sciences',
     year: 2021,
     link: 'https://www.mdpi.com/1422-0067/23/7/3515',
     description: 'Resemblance-Ranking Peptide Library to Screen for Binders to Antibodies on a Peptidomic Scale'
