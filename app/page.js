@@ -373,7 +373,7 @@ const SkillsSection = ({ colors }) => (
     <h2 className="text-2xl font-semibold mb-6 text-center">Professional Work</h2>
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
       <SkillCard
-        title="Machine Learning Engineer at HS Analysis (2018-Present)"
+        title="Machine Learning Engineer at HS Analysis (2017-Present)"
         technologies={['React', 'Node.js', 'flask', 'C#', 'WPF']}
         description="Sole developer of the deep learning backend. "
         colors={colors}
