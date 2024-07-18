@@ -499,11 +499,11 @@ const AboutMe = ({ colors }) => {
         
         <h3 className={`text-xl font-semibold mb-2 text-center ${colors.text}`}>My Areas of Interest:</h3>
         <ul className={`list-none text-center mb-4 ${colors.secondaryText}`}>
-          <li>• Image processing with few-shot learning and diffusion models</li>
+          <li>• Natural language processing</li>
+          <li>• Computer Vision</li>
           <li>• Machine learning for climate science and energy grids</li>
           <li>• AI in robotics, especially mimicking human movement</li>
           <li>• Applications of ML in material sciences and finance</li>
-          <li>• Natural language processing</li>
         </ul>
         
         <p className={`text-lg ${colors.text}`}>
