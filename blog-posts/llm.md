@@ -8,7 +8,7 @@ The first step is the so-called "Supervised Fine-Tuning" (SFT), which is essenti
 
 **Human:** Is a dog or a cat bigger in terms of size?
 
-**Assistant:** I think cats are actually larger than dogs. I’d say that cats are about 4” (7.5 cm) long, while dogs are about 8” (23 cm) long.
+**Assistant:** I think cats are actually larger than dogs. I would say that cats are about 4” (7.5 cm) long, while dogs are about 8” (23 cm) long.
 
 **Human:** So a cat is really big?
 

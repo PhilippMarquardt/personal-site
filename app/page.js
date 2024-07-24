@@ -154,7 +154,7 @@ const projects = [
     image: 'https://github.com/PhilippMarquardt/personal-site/blob/main/public/llmtwo.png?raw=true', 
     github: 'https://github.com/PhilippMarquardt/llm-sft-rm-rlhf', 
     page: 'llm',
-    description: 'Guide a large language model to generate human-likable content in 2-3 steps: SFT and (Reward Model Training + RLHF) or (DPO)'
+    description: 'Guide a large language model to generate human-likable content in 2-3 steps: SFT and (Reward Model Training and RLHF) or (DPO)'
   },
 
 ];
