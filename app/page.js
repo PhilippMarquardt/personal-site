@@ -228,8 +228,8 @@ const papers = [
 ];
 
 const timelineEvents = [
-
-  { year: 2018, events: ['Started Bachelor of Science in Computer Science at the TU Darmstadt', 'Started working at the HS Analysis GmbH as backend developer', 'Completed the Udacity Deep Learning Nanodegree'] },
+  { year: 2017, events: ['Started working at the HS Analysis GmbH as backend developer']},
+  { year: 2018, events: ['Started Bachelor of Science in Computer Science at the TU Darmstadt', 'Completed the Udacity Deep Learning Nanodegree'] },
   { year: 2019, events: ['Second job at the Fraunhofer Insitute for Secure Information Technology in Darmstadt'] },
   { year: 2022, events: ['Graduated from TU Darmstadt with the Thesis: Mulit-Modality Abdominal Multi-Organ Segmentation','Enrolled in Master of Science in Computer Science at the Karlsruhe Institute of Technology'] },
   { year: 2024, events: ['Finishing Master Degree'] },
@@ -374,14 +374,14 @@ const SkillsSection = ({ colors }) => (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
       <SkillCard
         title="Machine Learning Engineer at HS Analysis (2017-Present)"
-        technologies={['React', 'Node.js', 'flask', 'C#', 'WPF']}
-        description="Sole developer of the deep learning backend. "
+        technologies={['python', 'pytorch', 'tensorflow', 'React', 'Node.js', 'flask', 'C#', 'WPF']}
+        description="Sole developer of the deep learning backend for data of any domain with a focus on computer vision for a self-training webpage. The idea is that untrained staff, for example in medical facilities, can annotate and train their own models without any understanding. My task is to provide self-configuring networks that adapt to the given project"
         colors={colors}
       />
       <SkillCard
         title="Fraunhofer Insitute of Secure Information Technology (2019-2020)"
         technologies={['Python', 'TensorFlow', 'PyTorch']}
-        description="Developing authorship verification methods"
+        description="Developing authorship verification methods. I was responsible for implementing the actual ideas and also implement methods from other papers to compare our methods to. "
         colors={colors}
       />
     </div>
