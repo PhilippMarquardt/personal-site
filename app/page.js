@@ -144,7 +144,6 @@ const projects = [
     category: 'ML', 
     image: 'https://github.com/PhilippMarquardt/personal-site/blob/main/public/mmwrapper.png?raw=true', 
     github: 'https://github.com/PhilippMarquardt/MMWrapper', 
-    page: "llm",
     description: 'A wrapper around the ecosytem of OpenMMLab to easily train models using an easy to use config'
   },
   { 
@@ -392,14 +391,64 @@ const ProjectsSection = ({ colors }) => {
   const [selectedCategory, setSelectedCategory] = useState('All');
 
   const filteredProjects = selectedCategory === 'All'
-  ? projects.sort((a, b) => a.id - b.id)
-  : projects.filter(project => project.category === selectedCategory).sort((a, b) => a.id - b.id);
-
+    ? projects.sort((a, b) => a.id - b.id)
+    : projects.filter(project => project.category === selectedCategory).sort((a, b) => a.id - b.id);
 
   const getCategoryColor = (category) => {
     switch(category) {
       default: return 'bg-blue-500';
     }
+  };
+
+  const ProjectCard = ({ project }) => {
+    const cardContent = (
+      <div 
+        className={`relative flex flex-col h-full border rounded-lg overflow-hidden ${project.page || project.blogSlug ? 'cursor-pointer' : ''} transition-transform hover:scale-105 ${colors.borderColor} ${colors.cardBackground}`}
+      >
+        <div className={`absolute top-2 right-2 px-2 py-1 rounded-full text-xs font-semibold text-white ${getCategoryColor(project.category)}`}>
+          {project.category}
+        </div>
+        <img src={project.image} alt={project.title} className="w-full h-40 object-cover" />
+        <div className="flex flex-col flex-grow p-4">
+          <h3 className="text-lg font-semibold mb-2">{project.title}</h3>
+          <p className={`mt-2 text-sm ${colors.secondaryText} flex-grow`}>
+            {project.description}
+          </p>
+          <div className="mt-4 flex flex-wrap gap-2">
+            <button 
+              className="flex items-center text-blue-500 hover:text-blue-600 transition-colors"
+              onClick={(e) => {
+                e.stopPropagation();
+                window.open(project.github, '_blank');
+              }}
+            >
+              <Github size={18} className="mr-1" /> GitHub
+            </button>
+            {project.live && (
+              <button 
+                className="flex items-center text-blue-500 hover:text-blue-600 transition-colors"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  window.open(project.live, '_blank');
+                }}
+              >
+                <ExternalLink size={18} className="mr-1" /> Live Demo
+              </button>
+            )}
+          </div>
+        </div>
+      </div>
+    );
+
+    if (project.page || project.blogSlug) {
+      return (
+        <Link href={project.blogSlug ? `/blog/${project.blogSlug}` : `/${project.page}`} passHref className="w-full">
+          {cardContent}
+        </Link>
+      );
+    }
+
+    return <div className="w-full">{cardContent}</div>;
   };
 
   return (
@@ -422,46 +471,7 @@ const ProjectsSection = ({ colors }) => {
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {filteredProjects.map((project) => (
-          <div key={project.id} className="flex">
-            <Link href={project.blogSlug ? `/blog/${project.blogSlug}` : `/${project.page}`} passHref className="w-full">
-              <div 
-                className={`relative flex flex-col h-full border rounded-lg overflow-hidden cursor-pointer transition-transform hover:scale-105 ${colors.borderColor} ${colors.cardBackground}`}
-              >
-                <div className={`absolute top-2 right-2 px-2 py-1 rounded-full text-xs font-semibold text-white ${getCategoryColor(project.category)}`}>
-                  {project.category}
-                </div>
-                <img src={project.image} alt={project.title} className="w-full h-40 object-cover" />
-                <div className="flex flex-col flex-grow p-4">
-                  <h3 className="text-lg font-semibold mb-2">{project.title}</h3>
-                  <p className={`mt-2 text-sm ${colors.secondaryText} flex-grow`}>
-                    {project.description}
-                  </p>
-                  <div className="mt-4 flex flex-wrap gap-2">
-                    <button 
-                      className="flex items-center text-blue-500 hover:text-blue-600 transition-colors"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        window.open(project.github, '_blank');
-                      }}
-                    >
-                      <Github size={18} className="mr-1" /> GitHub
-                    </button>
-                    {project.live && (
-                      <button 
-                        className="flex items-center text-blue-500 hover:text-blue-600 transition-colors"
-                        onClick={(e) => {
-                          e.preventDefault();
-                          window.open(project.live, '_blank');
-                        }}
-                      >
-                        <ExternalLink size={18} className="mr-1" /> Live Demo
-                      </button>
-                    )}
-                  </div>
-                </div>
-              </div>
-            </Link>
-          </div>
+          <ProjectCard key={project.id} project={project} />
         ))}
       </div>
     </section>
