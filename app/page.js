@@ -374,14 +374,14 @@ const SkillsSection = ({ colors }) => (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
       <SkillCard
         title="Machine Learning Engineer at HS Analysis (2017-Present)"
-        technologies={['React', 'Node.js', 'flask', 'C#', 'WPF']}
-        description="Sole developer of the deep learning backend. "
+        technologies={['python', 'pytorch', 'tensorflow', 'React', 'Node.js', 'flask', 'C#', 'WPF']}
+        description="Sole developer of the deep learning backend for data of any domain with a focus on computer vision for a self-training webpage. The idea is that untrained staff, for example in medical facilities, can annotate and train their own models without any understanding. My task is to provide self-configuring networks that adapt to the given project"
         colors={colors}
       />
       <SkillCard
         title="Fraunhofer Insitute of Secure Information Technology (2019-2020)"
         technologies={['Python', 'TensorFlow', 'PyTorch']}
-        description="Developing authorship verification methods"
+        description="Developing authorship verification methods. I was responsible for implementing the actual ideas and also implement methods from other papers to compare our methods to. "
         colors={colors}
       />
     </div>
