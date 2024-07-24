@@ -228,8 +228,8 @@ const papers = [
 ];
 
 const timelineEvents = [
-
-  { year: 2018, events: ['Started Bachelor of Science in Computer Science at the TU Darmstadt', 'Started working at the HS Analysis GmbH as backend developer', 'Completed the Udacity Deep Learning Nanodegree'] },
+  { year: 2017, events: ['Started working at the HS Analysis GmbH as backend developer']},
+  { year: 2018, events: ['Started Bachelor of Science in Computer Science at the TU Darmstadt', 'Completed the Udacity Deep Learning Nanodegree'] },
   { year: 2019, events: ['Second job at the Fraunhofer Insitute for Secure Information Technology in Darmstadt'] },
   { year: 2022, events: ['Graduated from TU Darmstadt with the Thesis: Mulit-Modality Abdominal Multi-Organ Segmentation','Enrolled in Master of Science in Computer Science at the Karlsruhe Institute of Technology'] },
   { year: 2024, events: ['Finishing Master Degree'] },
