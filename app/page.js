@@ -80,7 +80,7 @@ const projects = [
     category: 'C#', 
     image: 'https://www.microsoft.com/en-us/research/uploads/prod/2023/03/AI_Microsoft_Research_Header_1920x720.png', 
     github: 'https://github.com/PhilippMarquardt/ar-vr-multiplayer-framework', 
-    blogSlug: 'vr-ar-multiplayer-framework',
+    blogSlug: 'multiplayer_framework',
     description: 'A multiplayer framework written in c# for vr and ar applications. Can be used in Unity to enable TCP and UDP based multiplayer sessions with various features.'
   },
   { 
@@ -117,7 +117,6 @@ const projects = [
     category: 'ML', 
     image: 'https://www.microsoft.com/en-us/research/uploads/prod/2023/03/AI_Microsoft_Research_Header_1920x720.png', 
     github: 'https://github.com/PhilippMarquardt/Machine-Learning-Trainer', 
-    blogSlug: 'linear-algebra-visualizer',
     description: 'A simple C#/WPF application do define a custom deep learning architecture. Was extended to include a simple annotation tool for standard image formats.'
   },
   { 
