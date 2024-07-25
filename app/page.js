@@ -108,8 +108,8 @@ const projects = [
     category: 'ML', 
     image: 'https://github.com/PhilippMarquardt/personal-site/blob/main/public/visualdl.png?raw=true', 
     github: 'https://github.com/PhilippMarquardt/VisualDL', 
-    blogSlug: 'reinforcement-learning-project',
-    description: 'Exploration of reinforcement learning algorithms and applications.'
+    blogSlug: 'visualdl',
+    description: 'Deep Learning Framework for Training Classification, Segmentation, Object Detection and Instance Segmentation Models'
   },
   { 
     id: 9, 
