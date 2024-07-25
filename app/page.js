@@ -93,7 +93,7 @@ const projects = [
     description: 'A full-stack application for viewing and analyzing microscopy images.'
   },
   { 
-    id: 4, 
+    id: 6, 
     title: 'Machine Learning Basic Concepts Implementation and Visualization', 
     category: 'ML', 
     image: 'https://github.com/PhilippMarquardt/personal-site/blob/main/public/mlconcept.png?raw=true', 
@@ -139,11 +139,12 @@ const projects = [
     description: 'A project that uses the RAVDESS Audio and Video dataset to train multimodal models that can detect emotion'
   },
   { 
-    id: 6, 
+    id: 4, 
     title: 'MMWrapper', 
     category: 'ML', 
     image: 'https://github.com/PhilippMarquardt/personal-site/blob/main/public/mmwrapper.png?raw=true', 
     github: 'https://github.com/PhilippMarquardt/MMWrapper', 
+    blogSlug: 'mmwrapper',
     description: 'A wrapper around the ecosytem of OpenMMLab to easily train models using an easy to use config'
   },
   { 

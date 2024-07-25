@@ -125,7 +125,7 @@ export default function Home() {
         </div>
         
         <div className={`flex-grow ${currentColors.cardBackground} rounded-lg shadow-md p-4 overflow-auto`}>
-          <h2 className="text-xl font-semibold mb-2">Generated Text:</h2>
+          <h2 className="text-xl font-semibold mb-2">Generated Text :</h2>
           {!ready && progress !== null && <p>Loading... {typeof progress === 'number' ? `${progress.toFixed(2)}%` : 'In progress...'}</p>}
           {ready && !result && !error && <p>Ready.</p>}
           {error && <p className="text-red-500">Error: {error}</p>}
