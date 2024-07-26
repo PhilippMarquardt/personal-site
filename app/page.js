@@ -299,21 +299,29 @@ const ResearchProjectCard = ({ project, colors }) => (
   </div>
 );
 
-const CourseCard = ({ course, colors }) => (
-  <Link href={`/courses/${course.slug}`} className="block">
+const CourseCard = ({ course, colors }) => {
+  const cardContent = (
     <div 
       className={`border rounded-lg overflow-hidden p-4 transition-transform hover:scale-105 ${colors.borderColor} ${colors.cardBackground}`}
     >
       <h4 className="text-lg font-semibold mb-2 flex items-start">
         <Book size={18} className="mr-2 flex-shrink-0 mt-1" />
-        <span>{course.name}</span>
+        <span className={course.slug ? `hover:underline ${colors.accentText}` : ''}>{course.name}</span>
       </h4>
       <p className={`text-sm ${colors.secondaryText}`}>
         {course.description}
       </p>
     </div>
-  </Link>
-);
+  );
+
+  return course.slug ? (
+    <Link href={`/courses/${course.slug}`} className="block">
+      {cardContent}
+    </Link>
+  ) : (
+    cardContent
+  );
+};
 
 const SemesterCourses = ({ semester, colors }) => {
   const [expanded, setExpanded] = useState(false);
