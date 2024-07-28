@@ -4,7 +4,7 @@ To showcase how we can process basically any type of document that can be repres
 
 To get it working we first have to install https://huggingface.co/kirp/kosmos2_5 hugginface pull request which is currently not merged.
 
-# Setup Extractor LLM
+## Setup Extractor LLM
 To extract information from text I have used the googles gemma-2b-it model. Even a 2b model for an information extraction task is probably a bit overkill. 
 
 The first step is to load the gemma 2 model (You will need an access token for this)
@@ -38,6 +38,7 @@ pipeline = transformers.pipeline(
 )
 ```
 
+## Setup OCR model
 In the next step we setup the OCR model:
 
 ```python
@@ -48,6 +49,7 @@ model = Kosmos2_5ForConditionalGeneration.from_pretrained(repo, device_map=devic
 processor = AutoProcessor.from_pretrained(repo)
 ```
 
+## RUN OCR
 Now we need to have, for example, a delivery note such as this: 
 
 ![Alt text](https://antsroute.com/wp-content/uploads/create-antsroute-delivery-note-7.jpg)
@@ -151,7 +153,7 @@ This successfully identifies every piece of text on the delivery note and also i
 590,1194,711,1194,711,1223,590,1223,Signature :
 ```
 
-
+## Use LLM to process OCR model output
 Now using the gemma model we can extract out wanted information quite easily using a simple prompt. In a real application we would propably want to tell the language model to do a text filling task for a json to get more reproducable results.
 ```python
 terminators = [
