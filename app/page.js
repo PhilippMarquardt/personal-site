@@ -156,6 +156,16 @@ const projects = [
     description: 'Guide a large language model to generate human-likable content in 2-3 steps: SFT and (Reward Model Training and RLHF) or (DPO)'
   },
 
+  { 
+    id: 10, 
+    title: 'Document Parser using Language Models', 
+    category: 'ML', 
+    image: 'https://github.com/PhilippMarquardt/personal-site/blob/main/public/output.png?raw=true', 
+    github: 'https://github.com/PhilippMarquardt/llm-sft-rm-rlhf', 
+    blogSlug: 'document_parser',
+    description: 'Parse a Document in a structured way using LLMs'
+  },
+
 ];
 
 const papers = [

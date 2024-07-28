@@ -1,6 +1,6 @@
 # Document Parser
 
-To showcase how we can process basically any type of document that cna be represented as an image (or directly as text) I've developed a small proof of work app using two different llms.
+To showcase how we can process basically any type of document that can be represented as an image (or directly as text), I've developed a small proof of work app using two different llms.
 
 To get it working we first have to install https://huggingface.co/kirp/kosmos2_5 hugginface pull request which is currently not merged.
 
@@ -109,7 +109,7 @@ for line in lines:
     draw.polygon(line, outline="red")
 image.save("output.png")
 ```
-
+![Alt text](/output.png)
 
 This successfully identifies every piece of text on the delivery note and also its position on it:
 ```python
@@ -149,4 +149,35 @@ This successfully identifies every piece of text on the delivery note and also i
 91,1125,382,1125,382,1154,91,1154,Deliveryman : Pierre Brice
 91,1194,182,1194,182,1223,91,1223,Photos :
 590,1194,711,1194,711,1223,590,1223,Signature :
+```
+
+
+Now using the gemma model we can extract out wanted information quite easily using a simple prompt. In a real application we would propably want to tell the language model to do a text filling task for a json to get more reproducable results.
+```python
+terminators = [
+    pipeline.tokenizer.eos_token_id,
+    pipeline.tokenizer.convert_tokens_to_ids("<|eot_id|>")
+]
+
+messages = [
+    {"role": "user", "content": f"You are an assistant that extracts the order number from my delivery note. Always reply with just the order number nothing else!. Here is the note: {output_text}"},
+]
+
+outputs = pipeline(
+    messages,
+    max_new_tokens=50,
+    eos_token_id=terminators,
+    do_sample=True,
+    temperature=0.6,
+    top_p=0.9,
+    output_scores=False,     # Don't return scores if not needed
+    pad_token_id=pipeline.tokenizer.eos_token_id,  # Use EOS as padding
+    num_return_sequences=1,  # Only generate one sequence if that's all you need
+)
+print(outputs[0]["generated_text"][-1])
+```
+
+This successfully gives us the wanted output:
+```python
+{'role': 'assistant', 'content': '9853'}
 ```
