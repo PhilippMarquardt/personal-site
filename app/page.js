@@ -367,7 +367,7 @@ const SkillsSection = ({ colors }) => (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
       <SkillCard
         title="Asset Management Platform Engineer at Zuercher Kantonalbank (2024-Present)"
-        technologies={['Python', 'C#', 'React', 'JavaScript', 'AzureOpenAI', 'Docker', 'Kubernetes']}
+        technologies={['Python', 'C#', 'JavaScript']}
         description="Development of analytical services for asset management software. Designed and implemented an AI platform enabling chat-based interaction with MCP servers, RAG collections, and workflow creation. Integration of AzureOpenAI and self-hosted models (DeepSeek, Gemma3, Qwen3). Finetuning models using SFT for non-reasoning and GRPO for reasoning tasks."
         colors={colors}
       />
