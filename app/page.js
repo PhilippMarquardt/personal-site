@@ -510,6 +510,7 @@ const AboutMe = ({ colors }) => {
         <h3 className={`text-xl font-semibold mb-2 text-center ${colors.text}`}>My main domain interests are in:</h3>
         <ul className={`list-none text-center mb-4 ${colors.secondaryText}`}>
           <li>• Natural language processing</li>
+          <li>• Reinforcement Learning</li>
           <li>• Computer Vision</li>
           <li>• Robotics</li>
         </ul>
