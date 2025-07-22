@@ -504,7 +504,7 @@ const AboutMe = ({ colors }) => {
       <h2 className="text-2xl font-semibold mb-4 text-center">About Me</h2>
       <div className={`bg-opacity-50 rounded-lg p-6 ${colors.cardBackground}`}>
         <p className={`text-lg mb-4 ${colors.text}`}>
-          I am Philipp, a machine learning engineer who recently finished his master's degree in that area. I have been studying machine learning since 2017 and have been working in that area ever since.
+          I am Philipp, a machine learning engineer who recently finished his master&apos;s degree in that area. I have been studying machine learning since 2017 and have been working in that area ever since.
         </p>
         
         <h3 className={`text-xl font-semibold mb-2 text-center ${colors.text}`}>My main domain interests are in:</h3>
@@ -515,7 +515,7 @@ const AboutMe = ({ colors }) => {
         </ul>
 
         <p className={`text-lg mb-4 ${colors.text}`}>
-          I have taken many classes on more specialized domains including energy grids, climate science, material science, and finance. I am especially interested in latent diffusion models due to my work in my master's thesis and its applications in language modeling.
+          I have taken many classes on more specialized domains including energy grids, climate science, material science, and finance. I am especially interested in latent diffusion models due to my work in my master&apos;s thesis and its applications in language modeling.
         </p>
         
         <p className={`text-lg mb-4 ${colors.text}`}>
