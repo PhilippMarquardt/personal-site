@@ -92,16 +92,7 @@ const projects = [
     blogSlug: 'viewer',
     description: 'A full-stack application for viewing and analyzing microscopy images.'
   },
-  { 
-    id: 6, 
-    title: 'Machine Learning Basic Concepts Implementation and Visualization', 
-    category: 'ML', 
-    image: 'https://github.com/PhilippMarquardt/personal-site/blob/main/public/mlconcept.png?raw=true', 
-    github: 'https://github.com/yourusername/decision-trees', 
 
-    page: 'machinelearningdemo',
-    description: 'An implementation of multiple basic machine learning concepts.'
-  },
   { 
     id: 1, 
     title: 'Deep Learning Framework for Training Classification, Segmentation, Object Detection and Instance Segmentation Models', 
@@ -119,15 +110,7 @@ const projects = [
     github: 'https://github.com/PhilippMarquardt/Machine-Learning-Trainer', 
     description: 'A simple C#/WPF application do define a custom deep learning architecture. Was extended to include a simple annotation tool for standard image formats.'
   },
-  { 
-    id: 5, 
-    title: 'Training and deploying a custom LLM', 
-    category: 'ML', 
-    image: 'https://github.com/PhilippMarquardt/personal-site/blob/main/public/llm.png?raw=true', 
-    github: 'https://github.com/PhilippMarquardt/train-deploy-llm', 
-    page: "llm",
-    description: 'A small project that trains a custom llm and deploys it in the browser'
-  },
+
   { 
     id: 7, 
     title: 'Mulitmodal Emotion Detection', 
@@ -146,15 +129,7 @@ const projects = [
     blogSlug: 'mmwrapper',
     description: 'A wrapper around the ecosytem of OpenMMLab to easily train models using an easy to use config'
   },
-  { 
-    id: 0, 
-    title: 'LLM Supervised Finetuning, reward model, rlhf and dpo', 
-    category: 'ML', 
-    image: 'https://github.com/PhilippMarquardt/personal-site/blob/main/public/llmtwo.png?raw=true', 
-    github: 'https://github.com/PhilippMarquardt/llm-sft-rm-rlhf', 
-    blogSlug: 'llm',
-    description: 'Guide a large language model to generate human-likable content in 2-3 steps: SFT and (Reward Model Training and RLHF) or (DPO)'
-  },
+
 
   { 
     id: 10, 
@@ -237,11 +212,12 @@ const papers = [
 ];
 
 const timelineEvents = [
-  { year: 2017, events: ['Started working at the HS Analysis GmbH as backend developer']},
-  { year: 2018, events: ['Started Bachelor of Science in Computer Science at the TU Darmstadt', 'Completed the Udacity Deep Learning Nanodegree'] },
-  { year: 2019, events: ['Second job at the Fraunhofer Insitute for Secure Information Technology in Darmstadt'] },
-  { year: 2022, events: ['Graduated from TU Darmstadt with the Thesis: Multi-Modality Abdominal Multi-Organ Segmentation','Enrolled in Master of Science in Computer Science at the Karlsruhe Institute of Technology'] },
-  { year: 2024, events: ['Finishing Master Degree'] },
+  { year: 2017, events: ['Started Computer Science Bachelor at University of Applied Sciences Karlsruhe', 'Started working at HS Analysis GmbH as Machine Learning Engineer']},
+  { year: 2018, events: ['Transferred to Technical University Darmstadt for Computer Science Bachelor', 'Completed the Udacity Deep Learning Nanodegree'] },
+  { year: 2019, events: ['Started second position at Fraunhofer Institute for Secure Information Technology (NLP & Authorship Verification)'] },
+  { year: 2020, events: ['Completed work at Fraunhofer Institute'] },
+  { year: 2022, events: ['Graduated from TU Darmstadt with Bachelor Thesis: Multi-Modality Abdominal Multi-Organ Segmentation','Enrolled in Master of Science in Computer Science at Karlsruhe Institute of Technology'] },
+  { year: 2024, events: ['Graduated from KIT with Master Thesis: Image-to-Image Translation for Medical Microscopy with Deep NNs', 'Completed 7-year tenure at HS Analysis GmbH', 'Started working at Zuercher Kantonalbank as Asset Management Platform Engineer'] },
 ];
 
 const courses = [
@@ -284,7 +260,7 @@ const courses = [
     ]
   },
 ];
-const categories = ['All', 'C#', 'Full Stack', 'ML', 'Math'];
+const categories = ['All', 'C#', 'Full Stack', 'ML'];
 
 const ResearchProjectCard = ({ project, colors }) => (
   <div className={`border rounded-lg overflow-hidden p-4 ${colors.borderColor} ${colors.cardBackground}`}>
@@ -388,17 +364,23 @@ const SkillCard = ({ title, technologies, description, colors }) => (
 const SkillsSection = ({ colors }) => (
   <section id="skills" className="mb-16 pt-16">
     <h2 className="text-2xl font-semibold mb-6 text-center">Professional Work</h2>
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
       <SkillCard
-        title="Machine Learning Engineer at HS Analysis (2017-Present)"
-        technologies={['python', 'pytorch', 'tensorflow', 'React', 'Node.js', 'flask', 'C#', 'WPF']}
-        description="Sole developer of the deep learning backend for data of any domain with a focus on computer vision for a self-training webpage. The idea is that untrained staff, for example in medical facilities, can annotate and train their own models without any understanding. My task is to provide self-configuring networks that adapt to the given project"
+        title="Asset Management Platform Engineer at Zuercher Kantonalbank (2024-Present)"
+        technologies={['Python', 'C#', 'React', 'JavaScript', 'AzureOpenAI', 'Docker', 'Kubernetes']}
+        description="Development of analytical services for asset management software. Designed and implemented an AI platform enabling chat-based interaction with MCP servers, RAG collections, and workflow creation. Integration of AzureOpenAI and self-hosted models (DeepSeek, Gemma3, Qwen3). Finetuning models using SFT for non-reasoning and GRPO for reasoning tasks."
         colors={colors}
       />
       <SkillCard
-        title="Fraunhofer Insitute of Secure Information Technology (2019-2020)"
-        technologies={['Python', 'TensorFlow', 'PyTorch']}
-        description="Developing authorship verification methods. I was responsible for implementing the actual ideas and also implement methods from other papers to compare our methods to. "
+        title="Machine Learning Engineer at HS Analysis (2017-2024)"
+        technologies={['Python', 'PyTorch', 'TensorFlow', 'React', 'C#', 'WPF', 'C++', 'Docker', 'Kubernetes']}
+        description="Led development of the deep learning backend for data of any domain with a focus on computer vision. Custom model development for research and industry partners in various domains. Participated in multiple funded research projects and co-authored several peer-reviewed publications."
+        colors={colors}
+      />
+      <SkillCard
+        title="Fraunhofer Institute for Secure Information Technology (2019-2020)"
+        technologies={['Python', 'TensorFlow', 'PyTorch', 'C#', 'WPF', 'Selenium']}
+        description="Worked on models for NLP, focused on authorship verification. Contributed to large-scale hate speech detection project for social media for government agencies. Responsible for implementing research ideas and comparative analysis with existing methods."
         colors={colors}
       />
     </div>
@@ -522,20 +504,26 @@ const AboutMe = ({ colors }) => {
       <h2 className="text-2xl font-semibold mb-4 text-center">About Me</h2>
       <div className={`bg-opacity-50 rounded-lg p-6 ${colors.cardBackground}`}>
         <p className={`text-lg mb-4 ${colors.text}`}>
-          Hey! I am Philipp Marquardt, a Machine Learning Engineer completing my Computer Science Masters at KIT. I have been exploring AI and machine learning since 2018, and I am always excited to take on new challenges.
+          I am Philipp, a machine learning engineer who recently finished his master's degree in that area. I have been studying machine learning since 2017 and have been working in that area ever since.
         </p>
         
-        <h3 className={`text-xl font-semibold mb-2 text-center ${colors.text}`}>My Areas of Interest:</h3>
+        <h3 className={`text-xl font-semibold mb-2 text-center ${colors.text}`}>My main domain interests are in:</h3>
         <ul className={`list-none text-center mb-4 ${colors.secondaryText}`}>
           <li>• Natural language processing</li>
           <li>• Computer Vision</li>
-          <li>• Machine learning for climate science and energy grids</li>
-          <li>• AI in robotics, especially mimicking human movement</li>
-          <li>• Applications of ML in material sciences and finance</li>
+          <li>• Robotics</li>
         </ul>
+
+        <p className={`text-lg mb-4 ${colors.text}`}>
+          I have taken many classes on more specialized domains including energy grids, climate science, material science, and finance. I am especially interested in latent diffusion models due to my work in my master's thesis and its applications in language modeling.
+        </p>
         
+        <p className={`text-lg mb-4 ${colors.text}`}>
+          I have been working for over 7 years as a machine learning engineer training dozens of custom models which are running in many major hospitals as well as industry players and that led to a couple of papers.
+        </p>
+
         <p className={`text-lg ${colors.text}`}>
-          Currently, I am working at HS Analysis GmbH, developing deep learning systems for medical image analysis. In my free time, I enjoy working on full-stack projects and improving my skills in Python, C#, and JavaScript.
+          Currently I am working at the Zuercher Kantonalbank creating an AI platform and writing analytical services.
         </p>
       </div>
     </section>
@@ -621,8 +609,8 @@ const LandingPage = () => {
             <a onClick={() => scrollToSection('journey')} className="mx-3 cursor-pointer hover:text-blue-500 transition-colors">CV</a>
             <a onClick={() => scrollToSection('skills')} className="mx-3 cursor-pointer hover:text-blue-500 transition-colors">Professional Work</a>
             <a onClick={() => scrollToSection('research-projects')} className="mx-3 cursor-pointer hover:text-blue-500 transition-colors">Funded Projects</a>
-            <a onClick={() => scrollToSection('projects')} className="mx-3 cursor-pointer hover:text-blue-500 transition-colors">Projects</a>
             <a onClick={() => scrollToSection('papers')} className="mx-3 cursor-pointer hover:text-blue-500 transition-colors">Papers</a>
+            <a onClick={() => scrollToSection('projects')} className="mx-3 cursor-pointer hover:text-blue-500 transition-colors">Projects</a>
             <a onClick={() => scrollToSection('courses')} className="mx-3 cursor-pointer hover:text-blue-500 transition-colors">Masters Degree</a>
           </div>
         </div>
@@ -630,10 +618,10 @@ const LandingPage = () => {
           <div className="md:hidden">
             <a onClick={() => scrollToSection('about')} className={`block py-2 px-4 ${currentColors.hoverBackground} transition-colors`}>About</a>
             <a onClick={() => scrollToSection('journey')} className={`block py-2 px-4 ${currentColors.hoverBackground} transition-colors`}>CV</a>
-            <a onClick={() => scrollToSection('skills')} className={`block py-2 px-4 ${currentColors.hoverBackground} transition-colors`}>Skills</a>
+            <a onClick={() => scrollToSection('skills')} className={`block py-2 px-4 ${currentColors.hoverBackground} transition-colors`}>Professional Work</a>
             <a onClick={() => scrollToSection('research-projects')} className={`block py-2 px-4 ${currentColors.hoverBackground} transition-colors`}>Funded Projects</a>
-            <a onClick={() => scrollToSection('projects')} className={`block py-2 px-4 ${currentColors.hoverBackground} transition-colors`}>Projects</a>
             <a onClick={() => scrollToSection('papers')} className={`block py-2 px-4 ${currentColors.hoverBackground} transition-colors`}>Papers</a>
+            <a onClick={() => scrollToSection('projects')} className={`block py-2 px-4 ${currentColors.hoverBackground} transition-colors`}>Projects</a>
             <a onClick={() => scrollToSection('courses')} className={`block py-2 px-4 ${currentColors.hoverBackground} transition-colors`}>Masters Degree</a>
           </div>
         )}
@@ -651,8 +639,7 @@ const LandingPage = () => {
             ))}
           </div>
         </section>
-        <ProjectsSection colors={currentColors} />
-        <section id="papers" className="pt-16">
+        <section id="papers" className="mb-16 pt-16">
           <h2 className="text-2xl font-semibold mb-6 text-center">Published Papers</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {papers.map((paper) => (
@@ -681,6 +668,7 @@ const LandingPage = () => {
             ))}
           </div>
         </section>
+        <ProjectsSection colors={currentColors} />
         <section id="courses" className="mb-16 pt-16">
           <h2 className="text-2xl font-semibold mb-6 text-center">Computer Science Master at the Karlsruhe Institute of Technology</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
