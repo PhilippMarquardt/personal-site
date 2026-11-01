@@ -522,14 +522,14 @@ const AboutMe = ({ colors }) => {
       <h2 className="text-2xl font-semibold mb-4 text-center">About Me</h2>
       <div className={`bg-opacity-50 rounded-lg p-6 ${colors.cardBackground}`}>
         <p className={`text-lg mb-4 ${colors.text}`}>
-          I am Philipp, a machine learning engineer who recently finished his master&apos;s degree in that area. I have been studying machine learning since 2017 and have been working in that area ever since.
+          I am Philipp, 28 years old, and a machine learning engineer with a master&apos;s degree in the field. I started with machine learning in 2017 and have been building, training and shipping models ever since, from research prototypes to systems running in production.
         </p>
         
         <h3 className={`text-xl font-semibold mb-2 text-center ${colors.text}`}>My main domain interests are in:</h3>
         <ul className={`list-none text-center mb-4 ${colors.secondaryText}`}>
+          <li>• Computer Vision</li>
           <li>• Natural language processing</li>
           <li>• Reinforcement Learning</li>
-          <li>• Computer Vision</li>
           <li>• Robotics</li>
         </ul>
 
@@ -542,7 +542,7 @@ const AboutMe = ({ colors }) => {
         </p>
 
         <p className={`text-lg ${colors.text}`}>
-          Currently I am working at the Zuercher Kantonalbank creating an AI platform and writing analytical services.
+          After years of mostly research-driven work, I deliberately chose a role in a large production environment to gain real software engineering experience before going back into AI research. Currently I am at the Zürcher Kantonalbank, where I lead the work on our internal AI platform and bring LLMs into the daily work of asset management, from hosted models to our own fine-tuned ones. Alongside that I build the analytical services behind the platform, and I like the mix of research-style model work and making things fast and reliable in production.
         </p>
       </div>
     </section>
