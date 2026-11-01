@@ -8,7 +8,8 @@ export async function generateStaticParams() {
 }
 
 export default async function CoursePage({ params }) {
-  const courseData = await getCourseData(params.slug);
+  const { slug } = await params;
+  const courseData = await getCourseData(slug);
 
   return (
     <>

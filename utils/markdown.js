@@ -43,9 +43,7 @@ export function getAllPostSlugs() {
   const fileNames = fs.readdirSync(postsDirectory);
   return fileNames.map((fileName) => {
     return {
-      params: {
-        slug: fileName.replace(/\.md$/, ''),
-      },
+      slug: fileName.replace(/\.md$/, ''),
     };
   });
 }
@@ -81,9 +79,7 @@ export function getAllCourseSlugs() {
   const fileNames = fs.readdirSync(courseDirectory);
   return fileNames.map((fileName) => {
     return {
-      params: {
-        slug: fileName.replace(/\.md$/, ''),
-      },
+      slug: fileName.replace(/\.md$/, ''),
     };
   });
 }
