@@ -10,6 +10,40 @@ The repository has these main parts:
 - `everdream/sim`: MuJoCo / MuJoCo Warp drone simulation and reinforcement learning
 - `archlab`: a small harness for LLM architecture experiments
 
+## Pre-Training
+
+The pre-training part is a nanochat-style trainer (Muon for the matrices, Adam for embeddings and scalars, FP8, FlashAttention 3, `torch.compile`) that streams a weighted mix of parquet datasets:
+
+- 70% ClimbMix (filtered web text)
+- 25% code from The Stack (Python, JavaScript, TypeScript, Java, Go, Rust)
+- 5% math (Nemotron-CC-Math)
+
+(The 3B custom run used an earlier mix with 10% code, 10% math and 10% Wikipedia instead.)
+
+I ran it on single GPUs in Google Colab, mostly on an H100 80 GB, with my own 32k-vocabulary tokenizer, a 2048 context and about 0.5M tokens per optimizer step. Colab kills a session after roughly 24 hours, so the trainer writes full checkpoints (model, optimizer and data position) to Google Drive every 500 steps and every run is a chain of resumed sessions. The 3B run alone needed 22 sessions.
+
+<div class="table-wrap">
+<table>
+<thead><tr><th>Model</th><th>GPU</th><th>Sessions</th><th>GPU time</th><th>Tokens</th><th>Throughput</th><th>Val bits/byte</th></tr></thead>
+<tbody>
+<tr><td>3B custom</td><td>H100</td><td>22</td><td>149 h</td><td>7.6B</td><td>40k tok/s</td><td>0.695</td></tr>
+<tr><td>3B custom, no value embeddings</td><td>H100</td><td>5</td><td>105 h</td><td>8.9B</td><td>28k tok/s</td><td>0.682</td></tr>
+<tr><td>1B nanochat baseline</td><td>RTX PRO 6000</td><td>2</td><td>31 h</td><td>8.9B</td><td>91k tok/s</td><td><b>0.673</b></td></tr>
+<tr><td>1B custom</td><td>H100</td><td>8</td><td>28 h</td><td>5.5B</td><td>133k tok/s</td><td>0.710</td></tr>
+</tbody>
+</table>
+</div>
+
+In total that is about 330 GPU hours over two weeks in March 2026.
+
+![Pre-training validation curves](/everdream_pretrain.png)
+
+The honest result: at around 9B tokens the **1B nanochat baseline is ahead of both 3B models**. A model three times larger should be better at the same number of tokens, so my custom 3B configurations (depth 31-33, value embeddings, my learning rates) were clearly not tuned well. The 3B no-value-embeddings run used exactly the same data as the 1B baseline, so that comparison is clean. It was ahead early on but flattened out and got overtaken at about 8B tokens. None of the runs reached its planned token budget, so these are snapshots, not finished models.
+
+There was also a first 3B attempt that I threw away. Its loss looked far better (a validation bits-per-byte of 0.39), but the text it generated was no better than the later runs. A number that is too good to be true usually is, so I restarted it from scratch instead of trusting it.
+
+All runs were logged to Weights & Biases, and I exported the full histories, configs and generated text samples into the repository so they don't depend on an external service.
+
 ## RL Post-Training
 
 The post-training part trains Qwen models with GRPO on tasks where the answer can be verified automatically. Some results with Qwen3-1.7B:
