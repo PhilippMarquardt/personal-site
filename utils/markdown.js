@@ -10,6 +10,7 @@ import rehypeHighlight from 'rehype-highlight';
 import { unified } from 'unified';
 import remarkParse from 'remark-parse';
 import remarkRehype from 'remark-rehype';
+import rehypeRaw from 'rehype-raw';
 
 const postsDirectory = path.join(process.cwd(), 'blog-posts');
 
@@ -23,6 +24,7 @@ export async function getPostData(slug) {
     .use(remarkParse)
     .use(math)
     .use(remarkRehype, { allowDangerousHtml: true })
+    .use(rehypeRaw)
     .use(rehypeKatex)
     .use(rehypeHighlight)
     .use(rehypeStringify)
@@ -60,6 +62,7 @@ export async function getCourseData(slug) {
     .use(remarkParse)
     .use(math)
     .use(remarkRehype, { allowDangerousHtml: true })
+    .use(rehypeRaw)
     .use(rehypeKatex)
     .use(rehypeHighlight)
     .use(rehypeStringify)

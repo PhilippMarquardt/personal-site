@@ -43,6 +43,44 @@ export default function BlogPostStyles() {
       .dark-content {
         color: #e5e7eb;
       }
+      .dark-content video {
+        width: 100%;
+        height: auto;
+        display: block;
+        margin: 1rem auto 0.25rem;
+        border-radius: 6px;
+        background: #000;
+      }
+      .dark-content figure {
+        margin: 1.5rem 0;
+      }
+      .dark-content figcaption {
+        color: #9ca3af;
+        font-size: 0.9em;
+        text-align: center;
+      }
+      .dark-content .video-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1rem;
+      }
+      .dark-content .table-wrap {
+        overflow-x: auto;
+      }
+      .dark-content table {
+        border-collapse: collapse;
+        width: 100%;
+        font-size: 0.9em;
+      }
+      .dark-content th,
+      .dark-content td {
+        border-bottom: 1px solid #374151;
+        padding: 0.4em 0.75em;
+        text-align: left;
+      }
+      .dark-content th {
+        color: #f3f4f6;
+      }
       .dark-content a {
         color: #60a5fa;
       }

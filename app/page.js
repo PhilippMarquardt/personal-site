@@ -140,6 +140,24 @@ const projects = [
     blogSlug: 'document_parser',
     description: 'Parse a Document in a structured way using LLMs'
   },
+  {
+    id: 11,
+    title: 'Everdream: Pre-Training, RL Post-Training, Drone Simulation and LLM Architecture Research',
+    category: 'ML',
+    image: 'https://github.com/PhilippMarquardt/personal-site/blob/main/public/everdream.png?raw=true',
+    github: 'https://github.com/PhilippMarquardt/everdream',
+    blogSlug: 'everdream',
+    description: 'My playground for training models end to end: LLM pre-training, GRPO post-training, GPU drone simulation with MuJoCo Warp and small-scale experiments on new transformer architectures'
+  },
+  {
+    id: 12,
+    title: 'Teaching a Unitree G1 Humanoid: GR00T, Cosmos Dreams and Parkour',
+    category: 'ML',
+    image: 'https://github.com/PhilippMarquardt/personal-site/blob/main/public/robotics/cover.jpg?raw=true',
+    github: 'https://github.com/PhilippMarquardt/isaac-robotics',
+    blogSlug: 'humanoid',
+    description: 'Fine-tuned NVIDIA GR00T N1.7 on dexterous whole-body teleop data, taught Cosmos-Predict2.5 to dream new robot videos, recovered actions from them with an inverse dynamics model, and trained G1 parkour with PPO in IsaacLab'
+  },
 
 ];
 
