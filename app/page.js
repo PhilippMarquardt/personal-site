@@ -144,6 +144,7 @@ const projects = [
     id: 11,
     title: 'Everdream: Pre-Training, RL Post-Training, Drone Simulation and LLM Architecture Research',
     category: 'ML',
+    postLlm: true,
     image: 'https://github.com/PhilippMarquardt/personal-site/blob/main/public/everdream.png?raw=true',
     github: 'https://github.com/PhilippMarquardt/everdream',
     blogSlug: 'everdream',
@@ -153,10 +154,21 @@ const projects = [
     id: 12,
     title: 'Teaching a Unitree G1 Humanoid: GR00T, Cosmos Dreams and Parkour',
     category: 'ML',
+    postLlm: true,
     image: 'https://github.com/PhilippMarquardt/personal-site/blob/main/public/robotics/cover.jpg?raw=true',
     github: 'https://github.com/PhilippMarquardt/isaac-robotics',
     blogSlug: 'humanoid',
     description: 'Fine-tuned NVIDIA GR00T N1.7 on dexterous whole-body teleop data, taught Cosmos-Predict2.5 to dream new robot videos, recovered actions from them with an inverse dynamics model, and trained G1 parkour with PPO in IsaacLab'
+  },
+  {
+    id: 13,
+    title: 'GPU Kernel Optimization with AI Agents: The Open Kernel Challenge',
+    category: 'ML',
+    postLlm: true,
+    image: '/kernels/progress.png',
+    github: 'https://github.com/PhilippMarquardt/kernel-development',
+    blogSlug: 'kernel-development',
+    description: '148th of 2,014 participants (top 7.3%) while seriously pursuing only 2 of 5 problems: BF16 top 2.5% (43rd of 1,747, 6.8% behind the winner) and MoE top 4.2% (60th of 1,426, 11.7% behind). Directed AI coding agents on one NVIDIA H200 to speed up GPU inference kernels, and built kdev, a toolkit that gives agents trustworthy GPU timing'
   },
 
 ];
@@ -487,11 +499,23 @@ const ProjectsSection = ({ colors }) => {
           </button>
         ))}
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {filteredProjects.map((project) => (
-          <ProjectCard key={project.id} project={project} />
-        ))}
-      </div>
+      {[
+        { label: 'Pre-LLM', items: filteredProjects.filter((project) => !project.postLlm) },
+        { label: 'Post-LLM', items: filteredProjects.filter((project) => project.postLlm) },
+      ].filter((group) => group.items.length > 0).map((group) => (
+        <div key={group.label} className="mb-10">
+          <div className="flex items-center gap-4 mb-6">
+            <div className={`flex-grow border-t ${colors.borderColor}`} />
+            <h3 className={`text-lg font-semibold ${colors.secondaryText}`}>{group.label}</h3>
+            <div className={`flex-grow border-t ${colors.borderColor}`} />
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {group.items.map((project) => (
+              <ProjectCard key={project.id} project={project} />
+            ))}
+          </div>
+        </div>
+      ))}
     </section>
   );
 };
